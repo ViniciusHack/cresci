@@ -1,8 +1,10 @@
 import { HackTrigger } from "./HackEgg";
 import { useI18n } from "../../lib/i18n";
+import { localizedPath } from "../../lib/locale";
+import { LangSwitch } from "../versions/VersionChrome";
 
 export function Header() {
-  const { copy, locale, setLocale } = useI18n();
+  const { copy, locale } = useI18n();
 
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-paper">
@@ -44,36 +46,12 @@ export function Header() {
             </a>
             <a
               className="hidden text-[13px] text-ink-soft transition-colors hover:text-ink lg:inline"
-              href="/versoes"
+              href={localizedPath("/versoes", locale)}
             >
               {copy.nav.versions}
             </a>
           </nav>
-          <div
-            role="group"
-            aria-label={copy.lang.label}
-            className="flex items-center gap-2 font-mono text-[11px] tracking-[0.14em]"
-          >
-            <button
-              type="button"
-              aria-pressed={locale === "pt-BR"}
-              onClick={() => setLocale("pt-BR")}
-              className={locale === "pt-BR" ? "text-ink" : "text-muted transition-colors hover:text-ink"}
-            >
-              {copy.lang.pt}
-            </button>
-            <span className="text-muted" aria-hidden>
-              /
-            </span>
-            <button
-              type="button"
-              aria-pressed={locale === "en"}
-              onClick={() => setLocale("en")}
-              className={locale === "en" ? "text-ink" : "text-muted transition-colors hover:text-ink"}
-            >
-              {copy.lang.en}
-            </button>
-          </div>
+          <LangSwitch className="font-mono text-[11px] tracking-[0.14em] [&_a[aria-current=true]]:text-ink [&_a]:text-muted [&_a]:transition-colors [&_a]:hover:text-ink" />
         </div>
       </div>
     </header>

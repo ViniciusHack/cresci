@@ -1,0 +1,25 @@
+# Vinícius Hack
+
+> Software and product engineer in Balneário Camboriú, Santa Catarina, Brazil.
+
+- Site: https://viniciushack.com
+- English: https://viniciushack.com/en
+- Email: viniciuswhack@gmail.com
+- LinkedIn: https://www.linkedin.com/in/viniciushack
+- GitHub: https://github.com/ViniciusHack
+- Calendar: https://calendly.com/viniciusvwh1441/30min
+
+Vinícius Hack builds software from a blank page to production. He works as a hired engineer and also ships his own apps and freelance products. The focus is the path: sit with the problem, pick the right tool, and deliver something people actually use — with AI in the loop to go faster, not to ship anything.
+
+## Work
+
+- Automatize — AI agent so a non-technical client can create, pause and read paid-traffic campaigns in the app and WhatsApp
+- Layback Trading — white-label trading platform (100k+ users/day), NestJS APIs and Rust bot engine
+- MyTribe — iOS/Android social app
+- Your Daily Cards — mobile app
+- Alento Foto & Filme — wedding photography site, freelance from scratch to paying clients
+- Goalfy — Stripe payments and react-flow diagrams
+
+## Location
+
+Balneário Camboriú, SC, Brazil. Languages: Portuguese and English.

@@ -143,9 +143,9 @@ export type Copy = {
 export const copies: Record<Locale, Copy> = {
   "pt-BR": {
     meta: {
-      title: "Vinícius Hack — do zero à produção",
+      title: "Vinícius Hack — engenheiro de software e produto",
       description:
-        "Vinícius Hack, engenheiro de software e produto em Balneário Camboriú. Constrói apps e plataformas do blank ao deploy, com IA no ciclo e conversa direta com o negócio.",
+        "Engenheiro de software e produto em Balneário Camboriú. Constrói apps e plataformas do zero à produção, com IA no ciclo e conversa direta com o negócio.",
     },
     skip: "Ir para o conteúdo",
     nav: {
@@ -160,7 +160,7 @@ export const copies: Record<Locale, Copy> = {
       lead: "O mesmo ofício. Várias linguagens — do portfólio clássico à página bruta.",
       current: "Editorial — a primeira",
       meta: {
-        title: "Versões — Vinícius Hack",
+        title: "Versões do site — Vinícius Hack",
         description:
           "O mesmo ofício em outras linguagens visuais: studio, editorial, noir e brutal.",
       },
@@ -402,9 +402,9 @@ export const copies: Record<Locale, Copy> = {
   },
   en: {
     meta: {
-      title: "Vinícius Hack — from zero to production",
+      title: "Vinícius Hack — software and product engineer",
       description:
-        "Vinícius Hack, software and product engineer in Balneário Camboriú. Ships apps and platforms from a blank page to production, with AI in the loop and a direct line to the business.",
+        "Software and product engineer in Balneário Camboriú. Builds apps and platforms from zero to production, with AI in the loop and a direct line to the business.",
     },
     skip: "Skip to content",
     nav: {
@@ -419,7 +419,7 @@ export const copies: Record<Locale, Copy> = {
       lead: "The same craft. Several languages — from a classic portfolio to a raw page.",
       current: "Editorial — the first one",
       meta: {
-        title: "Versions — Vinícius Hack",
+        title: "Site versions — Vinícius Hack",
         description:
           "The same craft in other visual languages: studio, editorial, noir and brutal.",
       },

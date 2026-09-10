@@ -1,11 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { BrutalPage } from "../components/versions/BrutalPage";
-import { copyForSearch, pageHead } from "../lib/seo";
+import { copyForLocation, pageHead } from "../lib/seo";
 
 export const Route = createFileRoute("/v/brutal")({
   head: ({ match }) => {
-    const { locale, copy } = copyForSearch(match.search);
+    const { locale, copy } = copyForLocation(match.pathname, match.search);
     return pageHead({
       title: `${copy.versions.brutal.name} — Vinícius Hack`,
       description: copy.versions.brutal.tag,

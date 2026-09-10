@@ -9,11 +9,11 @@ import { Hero } from "../components/site/Hero";
 import { Thinking } from "../components/site/Thinking";
 import { Work } from "../components/site/Work";
 import { useLenis } from "../hooks/lenis";
-import { copyForSearch, pageHead } from "../lib/seo";
+import { copyForLocation, pageHead } from "../lib/seo";
 
 export const Route = createFileRoute("/v/editorial")({
   head: ({ match }) => {
-    const { locale, copy } = copyForSearch(match.search);
+    const { locale, copy } = copyForLocation(match.pathname, match.search);
     return pageHead({
       title: `${copy.versions.editorial.name} — Vinícius Hack`,
       description: copy.versions.editorial.tag,

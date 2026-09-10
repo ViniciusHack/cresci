@@ -738,6 +738,9 @@ function ProjectMedia({
         <motion.img
           src={cover.src}
           alt={title}
+          width={1170}
+          height={2532}
+          decoding="async"
           className="h-full rounded-[1.4rem] object-cover shadow-xl"
           whileHover={reduce ? undefined : { y: -6, rotate: -2 }}
           transition={{ duration: 0.4, ease }}
@@ -749,7 +752,14 @@ function ProjectMedia({
   if (cover?.kind === "photo" && cover.src) {
     return (
       <div className="overflow-hidden bg-[var(--s-chip)]">
-        <img src={cover.src} alt={title} className="aspect-[16/10] w-full object-cover object-top" />
+        <img
+          src={cover.src}
+          alt={title}
+          width={1600}
+          height={1000}
+          decoding="async"
+          className="aspect-[16/10] w-full object-cover object-top"
+        />
       </div>
     );
   }

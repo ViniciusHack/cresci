@@ -4,13 +4,13 @@ import { VersoesPage } from "../components/versions/VersoesPage";
 import { copies } from "../lib/copy";
 import { pageHead } from "../lib/seo";
 
-export const Route = createFileRoute("/versoes")({
+export const Route = createFileRoute("/en/versoes")({
   head: () =>
     pageHead({
-      title: copies["pt-BR"].versions.meta.title,
-      description: copies["pt-BR"].versions.meta.description,
+      title: copies.en.versions.meta.title,
+      description: copies.en.versions.meta.description,
       path: "/versoes",
-      locale: "pt-BR",
+      locale: "en",
     }),
   component: VersoesPage,
 });

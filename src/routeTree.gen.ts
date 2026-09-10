@@ -10,9 +10,11 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as EnRouteImport } from './routes/en'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as VersoesRouteImport } from './routes/versoes'
+import { Route as EnVersoesRouteImport } from './routes/en.versoes'
 import { Route as VBrutalRouteImport } from './routes/v.brutal'
 import { Route as VEditorialRouteImport } from './routes/v.editorial'
 import { Route as VNoirRouteImport } from './routes/v.noir'
@@ -21,6 +23,11 @@ import { Route as VStudioRouteImport } from './routes/v.studio'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnRoute = EnRouteImport.update({
+  id: '/en',
+  path: '/en',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
@@ -37,6 +44,11 @@ const VersoesRoute = VersoesRouteImport.update({
   id: '/versoes',
   path: '/versoes',
   getParentRoute: () => rootRouteImport,
+} as any)
+const EnVersoesRoute = EnVersoesRouteImport.update({
+  id: '/versoes',
+  path: '/versoes',
+  getParentRoute: () => EnRoute,
 } as any)
 const VBrutalRoute = VBrutalRouteImport.update({
   id: '/v/brutal',
@@ -61,9 +73,11 @@ const VStudioRoute = VStudioRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/en': typeof EnRouteWithChildren
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/versoes': typeof VersoesRoute
+  '/en/versoes': typeof EnVersoesRoute
   '/v/brutal': typeof VBrutalRoute
   '/v/editorial': typeof VEditorialRoute
   '/v/noir': typeof VNoirRoute
@@ -71,9 +85,11 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/en': typeof EnRouteWithChildren
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/versoes': typeof VersoesRoute
+  '/en/versoes': typeof EnVersoesRoute
   '/v/brutal': typeof VBrutalRoute
   '/v/editorial': typeof VEditorialRoute
   '/v/noir': typeof VNoirRoute
@@ -82,9 +98,11 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/en': typeof EnRouteWithChildren
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/versoes': typeof VersoesRoute
+  '/en/versoes': typeof EnVersoesRoute
   '/v/brutal': typeof VBrutalRoute
   '/v/editorial': typeof VEditorialRoute
   '/v/noir': typeof VNoirRoute
@@ -94,9 +112,11 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/en'
     | '/robots.txt'
     | '/sitemap.xml'
     | '/versoes'
+    | '/en/versoes'
     | '/v/brutal'
     | '/v/editorial'
     | '/v/noir'
@@ -104,9 +124,11 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/en'
     | '/robots.txt'
     | '/sitemap.xml'
     | '/versoes'
+    | '/en/versoes'
     | '/v/brutal'
     | '/v/editorial'
     | '/v/noir'
@@ -114,9 +136,11 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/en'
     | '/robots.txt'
     | '/sitemap.xml'
     | '/versoes'
+    | '/en/versoes'
     | '/v/brutal'
     | '/v/editorial'
     | '/v/noir'
@@ -125,6 +149,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  EnRoute: typeof EnRouteWithChildren
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   VersoesRoute: typeof VersoesRoute
@@ -141,6 +166,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en': {
+      id: '/en'
+      path: '/en'
+      fullPath: '/en'
+      preLoaderRoute: typeof EnRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/robots.txt': {
@@ -163,6 +195,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/versoes'
       preLoaderRoute: typeof VersoesRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/en/versoes': {
+      id: '/en/versoes'
+      path: '/versoes'
+      fullPath: '/en/versoes'
+      preLoaderRoute: typeof EnVersoesRouteImport
+      parentRoute: typeof EnRoute
     }
     '/v/brutal': {
       id: '/v/brutal'
@@ -195,8 +234,19 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface EnRouteChildren {
+  EnVersoesRoute: typeof EnVersoesRoute
+}
+
+const EnRouteChildren: EnRouteChildren = {
+  EnVersoesRoute: EnVersoesRoute,
+}
+
+const EnRouteWithChildren = EnRoute._addFileChildren(EnRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  EnRoute: EnRouteWithChildren,
   RobotsDottxtRoute: RobotsDottxtRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   VersoesRoute: VersoesRoute,

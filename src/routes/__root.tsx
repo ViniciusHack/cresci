@@ -11,7 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import { I18nProvider, useI18n } from "../lib/i18n";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { localeFromSearch } from "../lib/seo";
+import { localeFromLocation } from "../lib/locale";
 import appCss from "../styles.css?url";
 
 const favicon =
@@ -83,7 +83,9 @@ export const Route = createRootRoute({
     ],
     links: [
       { rel: "icon", href: favicon },
-      { rel: "apple-touch-icon", href: "/vinicius.jpg" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
+      { rel: "me", href: "https://github.com/ViniciusHack" },
+      { rel: "me", href: "https://www.linkedin.com/in/viniciushack" },
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
@@ -101,7 +103,7 @@ export const Route = createRootRoute({
 
 function RootShell({ children }: { children: ReactNode }) {
   const locale = useRouterState({
-    select: (state) => localeFromSearch(state.location.search) ?? "pt-BR",
+    select: (state) => localeFromLocation(state.location.pathname, state.location.search),
   });
 
   return (

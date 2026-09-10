@@ -4,15 +4,15 @@ import { StudioPage } from "../components/versions/StudioPage";
 import { copies } from "../lib/copy";
 import { homeJsonLd, pageHead } from "../lib/seo";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/en")({
   head: () => ({
     ...pageHead({
-      title: copies["pt-BR"].meta.title,
-      description: copies["pt-BR"].meta.description,
+      title: copies.en.meta.title,
+      description: copies.en.meta.description,
       path: "/",
-      locale: "pt-BR",
+      locale: "en",
     }),
-    scripts: [homeJsonLd("pt-BR")],
+    scripts: [homeJsonLd("en")],
   }),
   component: StudioPage,
 });

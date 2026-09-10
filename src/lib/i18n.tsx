@@ -9,11 +9,9 @@ import {
   type ReactNode,
 } from "react";
 
-import { copies, isLocale, type Copy, type Locale } from "./copy";
-import { localeFromSearch } from "./seo";
+import { copies, type Copy, type Locale } from "./copy";
+import { localeFromLocation, localizedPath, stripLocalePrefix } from "./locale";
 import { SITE_URL } from "./site";
-
-const STORAGE_KEY = "vh-lang";
 
 type I18nContextValue = {
   locale: Locale;
@@ -22,12 +20,6 @@ type I18nContextValue = {
 };
 
 const I18nContext = createContext<I18nContextValue | null>(null);
-
-function localeFromStorage(): Locale | null {
-  if (typeof window === "undefined") return null;
-  const stored = window.localStorage.getItem(STORAGE_KEY);
-  return isLocale(stored) ? stored : null;
-}
 
 function upsertMeta(selector: string, attr: "name" | "property", key: string, content: string) {
   let element = document.querySelector(selector);
@@ -39,51 +31,49 @@ function upsertMeta(selector: string, attr: "name" | "property", key: string, co
   element.setAttribute("content", content);
 }
 
-function applyMeta(copy: Copy, locale: Locale) {
-  const url = locale === "en" ? `${SITE_URL}/?lang=en` : `${SITE_URL}/`;
+function pageCopy(copy: Copy, pathname: string) {
+  const rest = stripLocalePrefix(pathname);
+  if (rest === "/versoes") return copy.versions.meta;
+  return copy.meta;
+}
 
-  document.title = copy.meta.title;
+function applyMeta(copy: Copy, locale: Locale, pathname: string) {
+  const meta = pageCopy(copy, pathname);
+  const path = localizedPath(pathname, locale);
+  const url = `${SITE_URL}${path === "/" ? "/" : path}`;
+
+  document.title = meta.title;
   document.documentElement.lang = locale;
 
-  upsertMeta('meta[name="description"]', "name", "description", copy.meta.description);
-  upsertMeta('meta[property="og:title"]', "property", "og:title", copy.meta.title);
-  upsertMeta('meta[property="og:description"]', "property", "og:description", copy.meta.description);
+  upsertMeta('meta[name="description"]', "name", "description", meta.description);
+  upsertMeta('meta[property="og:title"]', "property", "og:title", meta.title);
+  upsertMeta('meta[property="og:description"]', "property", "og:description", meta.description);
   upsertMeta('meta[property="og:locale"]', "property", "og:locale", locale === "en" ? "en_US" : "pt_BR");
   upsertMeta('meta[property="og:url"]', "property", "og:url", url);
-  upsertMeta('meta[name="twitter:title"]', "name", "twitter:title", copy.meta.title);
-  upsertMeta('meta[name="twitter:description"]', "name", "twitter:description", copy.meta.description);
+  upsertMeta('meta[name="twitter:title"]', "name", "twitter:title", meta.title);
+  upsertMeta('meta[name="twitter:description"]', "name", "twitter:description", meta.description);
 
   const canonical = document.querySelector('link[rel="canonical"]');
   canonical?.setAttribute("href", url);
 }
 
 export function I18nProvider({ children }: { children: ReactNode }) {
-  const urlLocale = useRouterState({
-    select: (state) => localeFromSearch(state.location.search),
-  });
-  const [locale, setLocaleState] = useState<Locale>(() => urlLocale ?? "pt-BR");
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+  const search = useRouterState({ select: (state) => state.location.search });
+  const urlLocale = localeFromLocation(pathname, search);
+  const [locale, setLocaleState] = useState<Locale>(() => urlLocale);
 
   useEffect(() => {
-    if (urlLocale) {
-      setLocaleState(urlLocale);
-      return;
-    }
-    const stored = localeFromStorage();
-    if (stored) setLocaleState(stored);
+    setLocaleState(urlLocale);
   }, [urlLocale]);
 
   const setLocale = useCallback((next: Locale) => {
     setLocaleState(next);
-    window.localStorage.setItem(STORAGE_KEY, next);
-    const url = new URL(window.location.href);
-    if (next === "pt-BR") url.searchParams.delete("lang");
-    else url.searchParams.set("lang", next);
-    window.history.replaceState({}, "", url);
   }, []);
 
   useEffect(() => {
-    applyMeta(copies[locale], locale);
-  }, [locale]);
+    applyMeta(copies[locale], locale, pathname);
+  }, [locale, pathname]);
 
   const value = useMemo<I18nContextValue>(
     () => ({

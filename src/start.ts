@@ -1,9 +1,9 @@
 import { createMiddleware, createStart } from "@tanstack/react-start";
 
-import { canonicalLocation } from "./lib/site";
+import { canonicalRequestUrl } from "./lib/locale";
 
 const canonicalHost = createMiddleware().server(async ({ next, request }) => {
-  const target = canonicalLocation(new URL(request.url));
+  const target = canonicalRequestUrl(new URL(request.url));
   if (target) {
     return Response.redirect(target, 301);
   }
