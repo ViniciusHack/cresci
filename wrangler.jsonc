@@ -1,0 +1,16 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "vinicius-hack",
+  "account_id": "175785de94cc407b47a6d7c8cd3e5629",
+  "compatibility_date": "2026-09-10",
+  "compatibility_flags": ["nodejs_compat"],
+  "main": "@tanstack/react-start/server-entry",
+  "workers_dev": true,
+  "routes": [
+    { "pattern": "viniciushack.com", "custom_domain": true },
+    { "pattern": "www.viniciushack.com", "custom_domain": true }
+  ],
+  "observability": {
+    "enabled": true
+  }
+}
