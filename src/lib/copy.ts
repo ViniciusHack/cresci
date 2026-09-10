@@ -145,7 +145,7 @@ export const copies: Record<Locale, Copy> = {
     meta: {
       title: "Vinícius Hack — engenheiro de software e produto",
       description:
-        "Engenheiro de software e produto em Balneário Camboriú. Constrói apps e plataformas do zero à produção, com IA no ciclo e conversa direta com o negócio.",
+        "Da ideia ao lançamento — software que as pessoas usam. Desenvolvedor desde 2021, cria apps próprios e para clientes, com conversa direta com o negócio.",
     },
     skip: "Ir para o conteúdo",
     nav: {
@@ -404,7 +404,7 @@ export const copies: Record<Locale, Copy> = {
     meta: {
       title: "Vinícius Hack — software and product engineer",
       description:
-        "Software and product engineer in Balneário Camboriú. Builds apps and platforms from zero to production, with AI in the loop and a direct line to the business.",
+        "From idea to launch — software people actually use. A hired developer since 2021 who also builds his own apps and freelance work.",
     },
     skip: "Skip to content",
     nav: {

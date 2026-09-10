@@ -22,7 +22,7 @@ export function BrutalPage() {
             </h1>
             <p className="mt-2 text-sm font-semibold uppercase">{copy.studio.role}</p>
           </div>
-          <LangSwitch className="text-[12px] font-bold uppercase [&_button[aria-pressed=true]]:bg-black [&_button[aria-pressed=true]]:px-2 [&_button[aria-pressed=true]]:text-[#fff46a]" />
+          <LangSwitch className="text-[12px] font-bold uppercase [&_a[aria-current=true]]:bg-black [&_a[aria-current=true]]:px-2 [&_a[aria-current=true]]:text-[#fff46a] [&_button[aria-pressed=true]]:bg-black [&_button[aria-pressed=true]]:px-2 [&_button[aria-pressed=true]]:text-[#fff46a]" />
         </header>
 
         <div className="mt-4 border-[3px] border-black bg-white px-4 py-3 shadow-[6px_6px_0_#111]">

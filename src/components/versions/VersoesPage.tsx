@@ -26,7 +26,7 @@ export function VersoesPage() {
             <h1 className="mt-3 text-4xl font-semibold tracking-tight md:text-6xl">{copy.versions.title}</h1>
             <p className="mt-4 max-w-xl text-[#bdbdbd]">{copy.versions.lead}</p>
           </div>
-          <LangSwitch className="font-mono text-[12px] [&_button[aria-pressed=true]]:text-white" />
+          <LangSwitch className="font-mono text-[12px] [&_a[aria-current=true]]:text-white [&_button[aria-pressed=true]]:text-white" />
         </div>
 
         <ul className="mt-12 grid gap-4 md:grid-cols-2">

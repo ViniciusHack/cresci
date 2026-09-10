@@ -51,7 +51,7 @@ export function Header() {
               {copy.nav.versions}
             </a>
           </nav>
-          <LangSwitch className="font-mono text-[11px] tracking-[0.14em] [&_a[aria-current=true]]:text-ink [&_a]:text-muted [&_a]:transition-colors [&_a]:hover:text-ink" />
+          <LangSwitch className="font-mono text-[11px] tracking-[0.14em] [&_a[aria-current=true]]:text-ink" />
         </div>
       </div>
     </header>

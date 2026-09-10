@@ -201,7 +201,7 @@ export function StudioPage() {
               label={dark ? copy.studio.themeToLight : copy.studio.themeToDark}
               onToggle={toggleTheme}
             />
-            <LangSwitch className="text-[11px] font-medium uppercase tracking-[0.12em] [&_button]:cursor-pointer [&_button[aria-pressed=true]]:text-[var(--s-accent)]" />
+            <LangSwitch className="text-[11px] font-medium uppercase tracking-[0.12em] [&_a]:cursor-pointer [&_button]:cursor-pointer [&_a[aria-current=true]]:text-[var(--s-accent)] [&_button[aria-pressed=true]]:text-[var(--s-accent)]" />
           </div>
         </div>
       </motion.header>

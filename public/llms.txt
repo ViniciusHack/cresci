@@ -1,6 +1,6 @@
 # Vinícius Hack
 
-> Software and product engineer in Balneário Camboriú, Santa Catarina, Brazil.
+> Software and product engineer. From idea to launch — software people actually use.
 
 - Site: https://viniciushack.com
 - English: https://viniciushack.com/en
@@ -9,7 +9,7 @@
 - GitHub: https://github.com/ViniciusHack
 - Calendar: https://calendly.com/viniciusvwh1441/30min
 
-Vinícius Hack builds software from a blank page to production. He works as a hired engineer and also ships his own apps and freelance products. The focus is the path: sit with the problem, pick the right tool, and deliver something people actually use — with AI in the loop to go faster, not to ship anything.
+Vinícius Hack has been a hired developer since 2021 and, on the side, builds his own apps and apps for clients. What he cares about is the path: sit with the problem, pick the right tool, and ship something people actually use — that also creates business value.
 
 ## Work
 

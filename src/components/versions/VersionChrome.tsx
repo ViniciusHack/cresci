@@ -4,6 +4,12 @@ import { useI18n } from "../../lib/i18n";
 import { isIndexedPath, localizedPath } from "../../lib/locale";
 import { versions, type VersionId } from "../../lib/versions";
 
+function langClass(active: boolean) {
+  return active
+    ? "opacity-100 underline decoration-current/55 underline-offset-[5px]"
+    : "opacity-40 transition-opacity hover:opacity-75";
+}
+
 export function LangSwitch({ className = "" }: { className?: string }) {
   const { copy, locale, setLocale } = useI18n();
   const pathname = useRouterState({ select: (state) => state.location.pathname });
@@ -17,21 +23,43 @@ export function LangSwitch({ className = "" }: { className?: string }) {
     >
       {indexed ? (
         <>
-          <a href={localizedPath(pathname, "pt-BR")} aria-current={locale === "pt-BR" ? "true" : undefined}>
+          <a
+            href={localizedPath(pathname, "pt-BR")}
+            aria-current={locale === "pt-BR" ? "true" : undefined}
+            className={langClass(locale === "pt-BR")}
+          >
             {copy.lang.pt}
           </a>
-          <span aria-hidden>/</span>
-          <a href={localizedPath(pathname, "en")} aria-current={locale === "en" ? "true" : undefined}>
+          <span aria-hidden className="opacity-30">
+            /
+          </span>
+          <a
+            href={localizedPath(pathname, "en")}
+            aria-current={locale === "en" ? "true" : undefined}
+            className={langClass(locale === "en")}
+          >
             {copy.lang.en}
           </a>
         </>
       ) : (
         <>
-          <button type="button" aria-pressed={locale === "pt-BR"} onClick={() => setLocale("pt-BR")}>
+          <button
+            type="button"
+            aria-pressed={locale === "pt-BR"}
+            onClick={() => setLocale("pt-BR")}
+            className={langClass(locale === "pt-BR")}
+          >
             {copy.lang.pt}
           </button>
-          <span aria-hidden>/</span>
-          <button type="button" aria-pressed={locale === "en"} onClick={() => setLocale("en")}>
+          <span aria-hidden className="opacity-30">
+            /
+          </span>
+          <button
+            type="button"
+            aria-pressed={locale === "en"}
+            onClick={() => setLocale("en")}
+            className={langClass(locale === "en")}
+          >
             {copy.lang.en}
           </button>
         </>

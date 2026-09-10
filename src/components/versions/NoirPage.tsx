@@ -40,7 +40,7 @@ export function NoirPage() {
             ))}
           </div>
           <div className="mt-10 space-y-4 font-mono text-[11px] text-[#8892b0]">
-            <LangSwitch className="text-[#ccd6f6] [&_button[aria-pressed=true]]:text-[#64ffda]" />
+            <LangSwitch className="text-[#ccd6f6] [&_a[aria-current=true]]:text-[#64ffda] [&_button[aria-pressed=true]]:text-[#64ffda]" />
             <VersionSwitch current="noir" />
           </div>
         </aside>
