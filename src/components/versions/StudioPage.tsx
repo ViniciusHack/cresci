@@ -166,20 +166,25 @@ export function StudioPage() {
         initial={reduce ? false : { opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, ease }}
-        className="studio-header sticky top-0 z-40 border-b border-[var(--s-line)] bg-[var(--s-header)] backdrop-blur-md"
+        className="studio-header sticky top-0 z-40 border-b border-[var(--s-line)] bg-[var(--s-header)] pt-[env(safe-area-inset-top)] backdrop-blur-md"
       >
-        <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-5 py-3">
-          <p className="text-sm font-semibold tracking-tight">
-            <a href="#topo" className="transition-colors hover:text-[var(--s-accent)]">
-              {first}
-            </a>{" "}
-            <HackTrigger className="hack-trigger inline">{last}</HackTrigger>
+        <div className="mx-auto flex max-w-5xl flex-wrap items-center gap-x-3 gap-y-1 px-4 py-2 sm:flex-nowrap sm:gap-4 sm:px-5 sm:py-3">
+          <p className="order-1 min-w-0 text-sm font-semibold tracking-tight">
+            <span className="inline-flex items-baseline gap-1 whitespace-nowrap">
+              <a href="#topo" className="transition-colors hover:text-[var(--s-accent)]">
+                {first}
+              </a>
+              <HackTrigger className="hack-trigger inline">{last}</HackTrigger>
+            </span>
           </p>
-          <nav aria-label={copy.nav.sections} className="flex items-center gap-4 text-sm text-[var(--s-muted)]">
+          <nav
+            aria-label={copy.nav.sections}
+            className="order-3 flex w-full items-center justify-end gap-3 text-sm text-[var(--s-muted)] sm:order-2 sm:w-auto sm:flex-1 sm:gap-4"
+          >
             <a href="#sobre" className="link-underline hidden cursor-pointer sm:inline">
               {copy.studio.navAbout}
             </a>
-            <a href="#portfolio" className="link-underline cursor-pointer">
+            <a href="#portfolio" className="link-underline inline-flex min-h-11 items-center cursor-pointer sm:min-h-0">
               {copy.studio.navWork}
             </a>
             <a href="#experiencia" className="link-underline hidden cursor-pointer sm:inline">
@@ -189,12 +194,12 @@ export function StudioPage() {
               href="#contato"
               whileHover={reduce ? undefined : { y: -1 }}
               whileTap={reduce ? undefined : { scale: 0.97 }}
-              className="cursor-pointer rounded-md bg-[var(--s-btn)] px-3 py-1.5 text-[var(--s-btn-fg)]"
+              className="inline-flex min-h-11 cursor-pointer items-center rounded-md bg-[var(--s-btn)] px-3 text-[var(--s-btn-fg)] sm:min-h-0 sm:py-1.5"
             >
               {copy.studio.navContact}
             </motion.a>
           </nav>
-          <div className="flex items-center gap-3">
+          <div className="order-2 ml-auto flex items-center gap-1 sm:order-3 sm:ml-0 sm:gap-3">
             <ThemeToggle
               dark={dark}
               mounted={mounted}
@@ -207,7 +212,7 @@ export function StudioPage() {
       </motion.header>
 
       <main id="conteudo">
-        <section id="topo" className="relative scroll-mt-20 overflow-hidden">
+        <section id="topo" className="relative scroll-mt-28 overflow-hidden">
           {reduce ? null : (
             <>
               <motion.div
@@ -224,7 +229,7 @@ export function StudioPage() {
               />
             </>
           )}
-          <div className="relative mx-auto grid max-w-5xl items-center gap-12 px-5 py-16 md:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] md:py-24">
+          <div className="relative mx-auto grid max-w-5xl items-center gap-10 px-5 py-10 md:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] md:gap-12 md:py-24">
             <motion.div initial={reduce ? false : "hidden"} animate="show" variants={stagger}>
               <motion.p variants={fadeUp} className="text-sm font-medium text-[var(--s-accent)]">
                 {copy.studio.hello}
@@ -253,7 +258,7 @@ export function StudioPage() {
                   whileHover={reduce ? undefined : { y: -2 }}
                   whileTap={reduce ? undefined : { scale: 0.97 }}
                   transition={springHover}
-                  className="cursor-pointer rounded-md bg-[var(--s-btn)] px-4 py-2.5 text-sm font-medium text-[var(--s-btn-fg)]"
+                  className="inline-flex min-h-11 cursor-pointer items-center rounded-md bg-[var(--s-btn)] px-4 text-sm font-medium text-[var(--s-btn-fg)]"
                 >
                   {copy.studio.calendly}
                 </motion.a>
@@ -262,7 +267,7 @@ export function StudioPage() {
                   whileHover={reduce ? undefined : { y: -2 }}
                   whileTap={reduce ? undefined : { scale: 0.97 }}
                   transition={springHover}
-                  className="cursor-pointer rounded-md border border-[var(--s-line)] bg-[var(--s-bg-2)] px-4 py-2.5 text-sm font-medium"
+                  className="inline-flex min-h-11 cursor-pointer items-center rounded-md border border-[var(--s-line)] bg-[var(--s-bg-2)] px-4 text-sm font-medium"
                 >
                   {copy.studio.ctaWork}
                 </motion.a>
@@ -308,7 +313,7 @@ export function StudioPage() {
 
         <section
           id="sobre"
-          className="scroll-mt-20 border-t border-[var(--s-line)] bg-[var(--s-bg-2)] py-20"
+          className="scroll-mt-28 border-t border-[var(--s-line)] bg-[var(--s-bg-2)] py-16 md:py-20"
         >
           <div className="mx-auto grid max-w-5xl gap-12 px-5 md:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
             <Reveal>
@@ -349,7 +354,7 @@ export function StudioPage() {
           </div>
         </section>
 
-        <section id="portfolio" className="scroll-mt-20 py-20">
+        <section id="portfolio" className="scroll-mt-28 py-16 md:py-20">
           <div className="mx-auto max-w-5xl px-5">
             <Reveal>
               <p className="text-sm font-medium text-[var(--s-accent)]">{copy.studio.workEyebrow}</p>
@@ -362,7 +367,7 @@ export function StudioPage() {
 
         <section
           id="experiencia"
-          className="scroll-mt-20 border-t border-[var(--s-line)] bg-[var(--s-bg-2)] py-20"
+          className="scroll-mt-28 border-t border-[var(--s-line)] bg-[var(--s-bg-2)] py-16 md:py-20"
         >
           <div className="mx-auto max-w-5xl px-5">
             <Reveal>
@@ -397,36 +402,37 @@ export function StudioPage() {
           </div>
         </section>
 
-        <section id="contato" className="scroll-mt-20 px-5 py-20">
+        <section id="contato" className="scroll-mt-28 px-5 py-16 md:py-20">
           <Reveal>
             <motion.div
               whileHover={reduce ? undefined : { y: -4 }}
               transition={springHover}
-              className="mx-auto max-w-5xl rounded-2xl border border-[var(--s-line)] bg-[var(--s-bg-2)] px-6 py-12 shadow-sm md:px-12"
+              className="mx-auto max-w-5xl rounded-2xl border border-[var(--s-line)] bg-[var(--s-bg-2)] px-5 py-10 shadow-sm md:px-12 md:py-12"
             >
               <p className="text-sm font-medium text-[var(--s-accent)]">
                 {copy.talk.index.replace(/^\d+ \/ /, "")}
               </p>
               <h2 className="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">{copy.talk.title}</h2>
               <p className="mt-4 max-w-xl text-[var(--s-muted)]">{copy.talk.body}</p>
-              <div className="mt-8 flex flex-wrap gap-3">
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <motion.a
                   href={CALENDLY_URL}
                   target="_blank"
                   rel="noreferrer"
                   whileHover={reduce ? undefined : { y: -2 }}
                   whileTap={reduce ? undefined : { scale: 0.97 }}
-                  className="cursor-pointer rounded-md bg-[var(--s-btn)] px-4 py-2.5 text-sm font-medium text-[var(--s-btn-fg)]"
+                  className="inline-flex min-h-11 cursor-pointer items-center justify-center rounded-md bg-[var(--s-btn)] px-4 text-sm font-medium text-[var(--s-btn-fg)] sm:w-auto"
                 >
                   {copy.studio.calendly}
                 </motion.a>
                 <motion.a
                   href={`mailto:${copy.talk.email}`}
                   whileHover={reduce ? undefined : { y: -2 }}
-                  className="cursor-pointer rounded-md border border-[var(--s-line)] px-4 py-2.5 text-sm"
+                  className="inline-flex min-h-11 cursor-pointer items-center justify-center rounded-md border border-[var(--s-line)] px-4 text-sm sm:w-auto"
                 >
                   {copy.talk.email}
                 </motion.a>
+                <div className="flex flex-wrap gap-3">
                 {copy.socials.map((social) => (
                   <motion.a
                     key={social.href}
@@ -434,11 +440,12 @@ export function StudioPage() {
                     target="_blank"
                     rel={SOCIAL_REL}
                     whileHover={reduce ? undefined : { y: -2 }}
-                    className="cursor-pointer rounded-md border border-[var(--s-line)] px-4 py-2.5 text-sm"
+                    className="inline-flex min-h-11 min-w-11 cursor-pointer items-center justify-center rounded-md border border-[var(--s-line)] px-4 text-sm"
                   >
                     {social.label}
                   </motion.a>
                 ))}
+                </div>
               </div>
             </motion.div>
           </Reveal>
@@ -446,7 +453,7 @@ export function StudioPage() {
       </main>
 
       <footer className="border-t border-[var(--s-line)] px-5 py-6">
-        <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-4 text-xs text-[var(--s-soft)]">
+        <div className="mx-auto flex max-w-5xl flex-col items-center gap-3 text-center text-xs text-[var(--s-soft)] sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:text-left">
           <p>{copy.footer.rights}</p>
           <VersionSwitch current="studio" />
           <p>{copy.footer.place}</p>
@@ -477,9 +484,9 @@ function ThemeToggle({
     <button
       type="button"
       onClick={onToggle}
-      aria-label={mounted ? label : undefined}
-      title={mounted ? label : undefined}
-      className="studio-theme-toggle grid size-8 cursor-pointer place-items-center rounded-full border border-[var(--s-line)] bg-[var(--s-bg-2)]"
+      aria-label={label}
+      title={label}
+      className="studio-theme-toggle grid size-11 cursor-pointer place-items-center rounded-full border border-[var(--s-line)] bg-[var(--s-bg-2)] sm:size-8"
     >
       {mounted && dark ? (
         <svg
@@ -526,8 +533,9 @@ function ProjectShowcase({
   const [paused, setPaused] = useState(false);
   const [progress, setProgress] = useState(0);
   const progressRef = useRef(0);
+  const skipChipScroll = useRef(true);
   const rootRef = useRef<HTMLDivElement>(null);
-  const inView = useInView(rootRef, { amount: 0.4 });
+  const inView = useInView(rootRef, { amount: 0.2 });
   const active = items.find((item) => item.id === activeId) ?? items[0];
   const tags = stacks[active?.id ?? ""] ?? [];
   const cover = covers[active?.id ?? ""];
@@ -557,41 +565,55 @@ function ProjectShowcase({
     return () => window.clearInterval(id);
   }, [activeId, inView, items, paused, reduce]);
 
+  useEffect(() => {
+    if (skipChipScroll.current) {
+      skipChipScroll.current = false;
+      return;
+    }
+    const selected = rootRef.current?.querySelector<HTMLButtonElement>("button[aria-current='true']");
+    const scroller = selected?.closest("ol");
+    if (!selected || !scroller) return;
+    const left = selected.offsetLeft - scroller.clientWidth / 2 + selected.offsetWidth / 2;
+    scroller.scrollTo({ left: Math.max(0, left), behavior: "smooth" });
+  }, [activeId]);
+
   if (!active) return null;
 
   return (
     <div
       ref={rootRef}
-      className="mt-10 grid items-start gap-8 lg:grid-cols-[minmax(16rem,0.85fr)_minmax(0,1.15fr)]"
+      className="mt-10 grid items-start gap-5 lg:grid-cols-[minmax(16rem,0.85fr)_minmax(0,1.15fr)] lg:gap-8"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <ol className="divide-y divide-[var(--s-line)] border-y border-[var(--s-line)]">
+      <ol className="order-2 -mx-5 flex snap-x snap-mandatory gap-2 overflow-x-auto overscroll-x-contain px-5 pb-1 [scrollbar-width:none] [-ms-overflow-style:none] lg:order-1 lg:mx-0 lg:block lg:snap-none lg:divide-y lg:divide-[var(--s-line)] lg:overflow-visible lg:border-y lg:border-[var(--s-line)] lg:px-0 lg:pb-0 [&::-webkit-scrollbar]:hidden">
         {items.map((item, index) => {
           const selected = item.id === active.id;
           return (
-            <li key={item.id}>
+            <li key={item.id} className="shrink-0 snap-start lg:shrink lg:snap-align-none">
               <button
                 type="button"
                 onClick={() => setActiveId(item.id)}
                 aria-current={selected ? "true" : undefined}
-                className={`relative flex w-full cursor-pointer items-baseline gap-3 border-l-2 py-3.5 pl-3 text-left transition-colors ${
+                className={`relative flex cursor-pointer items-baseline gap-3 rounded-full border px-3.5 py-2.5 text-left transition-colors lg:w-full lg:rounded-none lg:border-y-0 lg:border-r-0 lg:border-l-2 lg:py-3.5 lg:pl-3 lg:pr-0 ${
                   selected
-                    ? "border-[var(--s-accent)] font-medium text-[var(--s-fg)]"
-                    : "border-transparent text-[var(--s-soft)] hover:text-[var(--s-fg)]"
+                    ? "border-[var(--s-accent)] bg-[var(--s-bg-2)] font-medium text-[var(--s-fg)] lg:bg-transparent"
+                    : "border-[var(--s-line)] text-[var(--s-soft)] hover:text-[var(--s-fg)] lg:border-l-transparent"
                 }`}
               >
-                <span className="w-6 shrink-0 font-mono text-[11px] text-[var(--s-soft)]">
+                <span className="hidden w-6 shrink-0 font-mono text-[11px] text-[var(--s-soft)] lg:inline">
                   {String(index + 1).padStart(2, "0")}
                 </span>
-                <span className="min-w-0 flex-1 text-[15px] font-medium tracking-tight">{item.title}</span>
-                <span className="hidden shrink-0 text-[11px] text-[var(--s-accent)] sm:inline">
+                <span className="min-w-0 flex-1 whitespace-nowrap text-[15px] font-medium tracking-tight lg:whitespace-normal">
+                  {item.title}
+                </span>
+                <span className="hidden shrink-0 text-[11px] text-[var(--s-accent)] lg:inline">
                   {item.metric}
                 </span>
                 {selected && !reduce ? (
                   <span
                     aria-hidden
-                    className="absolute inset-x-0 bottom-0 h-px bg-[var(--s-accent)]"
+                    className="absolute inset-x-0 bottom-0 hidden h-px bg-[var(--s-accent)] lg:block"
                     style={{ transform: `scaleX(${progress / 100})`, transformOrigin: "left" }}
                   />
                 ) : null}
@@ -606,7 +628,7 @@ function ProjectShowcase({
         initial={reduce ? false : { opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, ease }}
-        className="relative overflow-hidden rounded-2xl border border-[var(--s-line)] bg-[var(--s-bg-2)]"
+        className="relative order-1 overflow-hidden rounded-2xl border border-[var(--s-line)] bg-[var(--s-bg-2)] lg:order-2"
       >
         {reduce || items.length < 2 ? null : (
           <div className="absolute inset-x-0 top-0 z-10 h-0.5 bg-[var(--s-line)]/70" aria-hidden>

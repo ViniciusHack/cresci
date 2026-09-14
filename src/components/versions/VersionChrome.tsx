@@ -6,8 +6,8 @@ import { versions, type VersionId } from "../../lib/versions";
 
 function langClass(active: boolean) {
   return active
-    ? "opacity-100 underline decoration-current/55 underline-offset-[5px]"
-    : "opacity-40 transition-opacity hover:opacity-75";
+    ? "inline-flex min-h-11 min-w-9 items-center justify-center whitespace-nowrap opacity-100 underline decoration-current/55 underline-offset-[5px] sm:min-h-0 sm:min-w-0"
+    : "inline-flex min-h-11 min-w-9 items-center justify-center whitespace-nowrap opacity-40 transition-opacity hover:opacity-75 sm:min-h-0 sm:min-w-0";
 }
 
 export function LangSwitch({ className = "" }: { className?: string }) {
@@ -19,7 +19,7 @@ export function LangSwitch({ className = "" }: { className?: string }) {
     <div
       role="group"
       aria-label={copy.lang.label}
-      className={`flex items-center gap-2 ${className}`}
+      className={`flex items-center gap-0.5 sm:gap-2 ${className}`}
     >
       {indexed ? (
         <>
@@ -28,7 +28,7 @@ export function LangSwitch({ className = "" }: { className?: string }) {
             aria-current={locale === "pt-BR" ? "true" : undefined}
             className={langClass(locale === "pt-BR")}
           >
-            {copy.lang.pt}
+            <LangText label={copy.lang.pt} />
           </a>
           <span aria-hidden className="opacity-30">
             /
@@ -49,7 +49,7 @@ export function LangSwitch({ className = "" }: { className?: string }) {
             onClick={() => setLocale("pt-BR")}
             className={langClass(locale === "pt-BR")}
           >
-            {copy.lang.pt}
+            <LangText label={copy.lang.pt} />
           </button>
           <span aria-hidden className="opacity-30">
             /
@@ -65,6 +65,16 @@ export function LangSwitch({ className = "" }: { className?: string }) {
         </>
       )}
     </div>
+  );
+}
+
+function LangText({ label }: { label: string }) {
+  if (label !== "PT-BR") return label;
+  return (
+    <>
+      <span className="sm:hidden">PT</span>
+      <span className="hidden sm:inline">PT-BR</span>
+    </>
   );
 }
 
