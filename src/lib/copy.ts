@@ -143,7 +143,7 @@ export type Copy = {
 export const copies: Record<Locale, Copy> = {
   "pt-BR": {
     meta: {
-      title: "Vinícius Hack — engenheiro de software e produto",
+      title: "Vinícius Wilbert Hack — engenheiro de software e produto",
       description:
         "Da ideia ao lançamento — software que as pessoas usam. Desenvolvedor desde 2021, cria apps próprios e para clientes, com conversa direta com o negócio.",
     },
@@ -191,7 +191,7 @@ export const copies: Record<Locale, Copy> = {
       aboutEyebrow: "Sobre",
       aboutTitle: "Quem sou.",
       aboutBody:
-        "Trabalho como desenvolvedor contratado desde 2021 (escrevi a primeira linha de código em 2019) e, à parte, crio apps próprios e para clientes (freelance). O que me interessa é o caminho. Sentar com o problema, escolher a ferramenta mais adequada e entregar algo que as pessoas usem de verdade — e que traga valor para o negócio.",
+        "Me chamo Vinícius Wilbert Hack. Trabalho como desenvolvedor contratado desde 2021 (escrevi a primeira linha de código em 2019) e, à parte, crio apps próprios e para clientes (freelance). O que me interessa é o caminho. Sentar com o problema, escolher a ferramenta mais adequada e entregar algo que as pessoas usem de verdade — e que traga valor para o negócio.",
       skillsTitle: "Stack",
       skills: [
         { group: "Front", items: ["TypeScript", "React", "Next.js", "Tailwind"] },
@@ -228,7 +228,7 @@ export const copies: Record<Locale, Copy> = {
       navWork: "Portfólio",
       navExperience: "Experiência",
       navContact: "Contato",
-      photoAlt: "Retrato de Vinícius Hack",
+      photoAlt: "Retrato de Vinícius Wilbert Hack",
       photoCard: "Aberto a conversar",
       themeToDark: "Ativar modo escuro",
       themeToLight: "Ativar modo claro",
@@ -402,7 +402,7 @@ export const copies: Record<Locale, Copy> = {
   },
   en: {
     meta: {
-      title: "Vinícius Hack — software and product engineer",
+      title: "Vinícius Wilbert Hack — software and product engineer",
       description:
         "From idea to launch — software people actually use. A hired developer since 2021 who also builds his own apps and freelance work.",
     },
@@ -450,7 +450,7 @@ export const copies: Record<Locale, Copy> = {
       aboutEyebrow: "About",
       aboutTitle: "Who I am.",
       aboutBody:
-        "I have been a hired developer since 2021 (I wrote my first line of code in 2019) and, on the side, I build my own apps and apps for clients (freelance). What I care about is the path. Sit with the problem, pick the right tool, and ship something people actually use — that also creates business value.",
+        "I'm Vinícius Wilbert Hack. I have been a hired developer since 2021 (I wrote my first line of code in 2019) and, on the side, I build my own apps and apps for clients (freelance). What I care about is the path. Sit with the problem, pick the right tool, and ship something people actually use — that also creates business value.",
       skillsTitle: "Stack",
       skills: [
         { group: "Front", items: ["TypeScript", "React", "Next.js", "Tailwind"] },
@@ -487,7 +487,7 @@ export const copies: Record<Locale, Copy> = {
       navWork: "Work",
       navExperience: "Experience",
       navContact: "Contact",
-      photoAlt: "Portrait of Vinícius Hack",
+      photoAlt: "Portrait of Vinícius Wilbert Hack",
       photoCard: "Open to chat",
       themeToDark: "Turn on dark mode",
       themeToLight: "Turn on light mode",

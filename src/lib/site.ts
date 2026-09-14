@@ -1,6 +1,7 @@
 export const SITE_HOST = "viniciushack.com";
 export const SITE_URL = `https://${SITE_HOST}`;
 export const SITE_NAME = "Vinícius Hack";
+export const SITE_FULL_NAME = "Vinícius Wilbert Hack";
 export const SITE_EMAIL = "viniciuswhack@gmail.com";
 export const OG_IMAGE_PATH = "/og.jpg";
 export const CALENDLY_URL = "https://calendly.com/viniciusvwh1441/30min";

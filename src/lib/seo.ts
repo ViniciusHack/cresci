@@ -7,7 +7,15 @@ import {
   localizedPath,
   stripLocalePrefix,
 } from "./locale";
-import { OG_IMAGE_PATH, SITE_EMAIL, SITE_NAME, SITE_URL, SOCIALS, absoluteUrl } from "./site";
+import {
+  OG_IMAGE_PATH,
+  SITE_EMAIL,
+  SITE_FULL_NAME,
+  SITE_NAME,
+  SITE_URL,
+  SOCIALS,
+  absoluteUrl,
+} from "./site";
 
 export { localeFromLocation, localeFromPathname, localeFromSearch, localizedPath };
 
@@ -40,7 +48,7 @@ export function pageHead({
     meta: [
       { title },
       { name: "description", content: description },
-      { name: "author", content: SITE_NAME },
+      { name: "author", content: SITE_FULL_NAME },
       {
         name: "robots",
         content: index
@@ -104,10 +112,16 @@ export function homeJsonLd(locale: Locale) {
         {
           "@type": "Person",
           "@id": `${SITE_URL}/#person`,
-          name: SITE_NAME,
+          name: SITE_FULL_NAME,
           givenName: "Vinícius",
+          additionalName: "Wilbert",
           familyName: "Hack",
-          alternateName: ["Vinicius Hack", "Vinícius Wilbert Hack"],
+          alternateName: [
+            SITE_NAME,
+            "Vinicius Hack",
+            "Vinicius Wilbert Hack",
+            "Vinícius W. Hack",
+          ],
           url: SITE_URL,
           image: {
             "@type": "ImageObject",
