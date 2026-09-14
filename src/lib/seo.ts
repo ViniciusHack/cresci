@@ -85,6 +85,19 @@ export function pageHead({
 export function homeJsonLd(locale: Locale) {
   const copy = copies[locale];
   const url = absoluteLocalizedUrl("/", locale);
+  const pt = locale !== "en";
+  const homeCity = {
+    "@type": "City",
+    name: "Balneário Camboriú",
+    containedInPlace: {
+      "@type": "State",
+      name: "Santa Catarina",
+      containedInPlace: {
+        "@type": "Country",
+        name: pt ? "Brasil" : "Brazil",
+      },
+    },
+  };
 
   return {
     type: "application/ld+json",
@@ -96,7 +109,7 @@ export function homeJsonLd(locale: Locale) {
           "@id": `${SITE_URL}/#website`,
           url: SITE_URL,
           name: SITE_NAME,
-          inLanguage: locale === "en" ? "en" : "pt-BR",
+          inLanguage: pt ? "pt-BR" : "en",
           publisher: { "@id": `${SITE_URL}/#person` },
         },
         {
@@ -105,7 +118,7 @@ export function homeJsonLd(locale: Locale) {
           url,
           name: copy.meta.title,
           description: copy.meta.description,
-          inLanguage: locale === "en" ? "en" : "pt-BR",
+          inLanguage: pt ? "pt-BR" : "en",
           isPartOf: { "@id": `${SITE_URL}/#website` },
           mainEntity: { "@id": `${SITE_URL}/#person` },
         },
@@ -132,22 +145,44 @@ export function homeJsonLd(locale: Locale) {
           jobTitle: copy.studio.role,
           description: copy.meta.description,
           knowsLanguage: ["pt-BR", "en"],
-          knowsAbout: [
-            "software engineering",
-            "product engineering",
-            "React",
-            "TypeScript",
-            "mobile apps",
-          ],
+          knowsAbout: pt
+            ? [
+                "engenharia de software",
+                "desenvolvimento de software",
+                "programação",
+                "produto digital",
+                "React",
+                "TypeScript",
+                "aplicativos mobile",
+              ]
+            : [
+                "software engineering",
+                "software development",
+                "programming",
+                "product engineering",
+                "React",
+                "TypeScript",
+                "mobile apps",
+              ],
+          hasOccupation: {
+            "@type": "Occupation",
+            name: pt ? "Engenheiro de software" : "Software engineer",
+            alternateName: pt
+              ? ["Desenvolvedor", "Programador", "Engenheiro de produto"]
+              : ["Developer", "Programmer", "Product engineer"],
+            occupationLocation: homeCity,
+          },
+          workLocation: homeCity,
+          homeLocation: homeCity,
           address: {
             "@type": "PostalAddress",
             addressLocality: "Balneário Camboriú",
-            addressRegion: "SC",
+            addressRegion: "Santa Catarina",
             addressCountry: "BR",
           },
           worksFor: [
-            { "@type": "Organization", "name": "Automatize" },
-            { "@type": "Organization", "name": "Layback Trading" },
+            { "@type": "Organization", name: "Automatize" },
+            { "@type": "Organization", name: "Layback Trading" },
           ],
           sameAs: SOCIALS.map((social) => social.href),
         },

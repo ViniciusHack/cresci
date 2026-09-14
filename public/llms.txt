@@ -1,6 +1,6 @@
 # Vinícius Wilbert Hack
 
-> Software and product engineer. From idea to launch — software people actually use.
+> Engenheiro de software e desenvolvedor em Balneário Camboriú, Santa Catarina. From idea to launch — software people actually use.
 
 - Site: https://viniciushack.com
 - English: https://viniciushack.com/en
@@ -9,7 +9,7 @@
 - GitHub: https://github.com/ViniciusHack
 - Calendar: https://calendly.com/viniciusvwh1441/30min
 
-Vinícius Wilbert Hack (Vinícius Hack) has been a hired developer since 2021 and, on the side, builds his own apps and apps for clients. What he cares about is the path: sit with the problem, pick the right tool, and ship something people actually use — that also creates business value.
+Vinícius Wilbert Hack (Vinícius Hack) is a software engineer, developer and programmer based in Balneário Camboriú, Santa Catarina, Brazil. He has been a hired developer since 2021 (programming since 2019) and, on the side, builds his own apps and apps for clients.
 
 ## Work
 
@@ -22,4 +22,4 @@ Vinícius Wilbert Hack (Vinícius Hack) has been a hired developer since 2021 an
 
 ## Location
 
-Balneário Camboriú, SC, Brazil. Languages: Portuguese and English.
+Balneário Camboriú, Santa Catarina, Brazil. Languages: Portuguese and English.

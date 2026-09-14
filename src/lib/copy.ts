@@ -145,7 +145,7 @@ export const copies: Record<Locale, Copy> = {
     meta: {
       title: "Vinícius Wilbert Hack — engenheiro de software e produto",
       description:
-        "Da ideia ao lançamento — software que as pessoas usam. Desenvolvedor desde 2021, cria apps próprios e para clientes, com conversa direta com o negócio.",
+        "Engenheiro de software e desenvolvedor em Balneário Camboriú, Santa Catarina. Da ideia ao lançamento — apps próprios e para clientes, desde 2021.",
     },
     skip: "Ir para o conteúdo",
     nav: {
@@ -191,7 +191,7 @@ export const copies: Record<Locale, Copy> = {
       aboutEyebrow: "Sobre",
       aboutTitle: "Quem sou.",
       aboutBody:
-        "Me chamo Vinícius Wilbert Hack. Trabalho como desenvolvedor contratado desde 2021 (escrevi a primeira linha de código em 2019) e, à parte, crio apps próprios e para clientes (freelance). O que me interessa é o caminho. Sentar com o problema, escolher a ferramenta mais adequada e entregar algo que as pessoas usem de verdade — e que traga valor para o negócio.",
+        "Me chamo Vinícius Wilbert Hack. Sou engenheiro de software e desenvolvedor em Balneário Camboriú, Santa Catarina. Trabalho como contratado desde 2021 (programo desde 2019) e, à parte, crio apps próprios e para clientes (freelance). O que me interessa é o caminho. Sentar com o problema, escolher a ferramenta mais adequada e entregar algo que as pessoas usem de verdade — e que traga valor para o negócio.",
       skillsTitle: "Stack",
       skills: [
         { group: "Front", items: ["TypeScript", "React", "Next.js", "Tailwind"] },
@@ -228,7 +228,7 @@ export const copies: Record<Locale, Copy> = {
       navWork: "Portfólio",
       navExperience: "Experiência",
       navContact: "Contato",
-      photoAlt: "Retrato de Vinícius Wilbert Hack",
+      photoAlt: "Retrato de Vinícius Wilbert Hack, engenheiro de software em Balneário Camboriú",
       photoCard: "Aberto a conversar",
       themeToDark: "Ativar modo escuro",
       themeToLight: "Ativar modo claro",
@@ -364,14 +364,14 @@ export const copies: Record<Locale, Copy> = {
     talk: {
       index: "03 / Presença",
       title: "Vamos conversar.",
-      body: "Aberto a uma conversa — um produto travado, um time que precisa de alguém que tire do papel, ou uma parceria que ainda não tem nome.",
+      body: "Aberto a uma conversa em Balneário Camboriú ou remoto — um produto travado, um time que precisa de alguém que tire do papel, ou uma parceria que ainda não tem nome.",
       emailLabel: "Escreva",
       email: "viniciuswhack@gmail.com",
       linksLabel: "Por aí",
     },
     footer: {
       rights: "© 2026 Vinícius Hack",
-      place: "Balneário Camboriú, SC",
+      place: "Balneário Camboriú, Santa Catarina",
     },
     notFound: {
       title: "Esta página não está aqui.",
@@ -404,7 +404,7 @@ export const copies: Record<Locale, Copy> = {
     meta: {
       title: "Vinícius Wilbert Hack — software and product engineer",
       description:
-        "From idea to launch — software people actually use. A hired developer since 2021 who also builds his own apps and freelance work.",
+        "Software engineer and developer in Balneário Camboriú, Santa Catarina, Brazil. From idea to launch — own apps and client work since 2021.",
     },
     skip: "Skip to content",
     nav: {
@@ -450,7 +450,7 @@ export const copies: Record<Locale, Copy> = {
       aboutEyebrow: "About",
       aboutTitle: "Who I am.",
       aboutBody:
-        "I'm Vinícius Wilbert Hack. I have been a hired developer since 2021 (I wrote my first line of code in 2019) and, on the side, I build my own apps and apps for clients (freelance). What I care about is the path. Sit with the problem, pick the right tool, and ship something people actually use — that also creates business value.",
+        "I'm Vinícius Wilbert Hack, a software engineer and developer in Balneário Camboriú, Santa Catarina, Brazil. I have been a hired developer since 2021 (I have been programming since 2019) and, on the side, I build my own apps and apps for clients (freelance). What I care about is the path. Sit with the problem, pick the right tool, and ship something people actually use — that also creates business value.",
       skillsTitle: "Stack",
       skills: [
         { group: "Front", items: ["TypeScript", "React", "Next.js", "Tailwind"] },
@@ -487,7 +487,7 @@ export const copies: Record<Locale, Copy> = {
       navWork: "Work",
       navExperience: "Experience",
       navContact: "Contact",
-      photoAlt: "Portrait of Vinícius Wilbert Hack",
+      photoAlt: "Portrait of Vinícius Wilbert Hack, software engineer in Balneário Camboriú",
       photoCard: "Open to chat",
       themeToDark: "Turn on dark mode",
       themeToLight: "Turn on light mode",
@@ -623,14 +623,14 @@ export const copies: Record<Locale, Copy> = {
     talk: {
       index: "03 / Presence",
       title: "Let's talk.",
-      body: "Open to a conversation — a stuck product, a team that needs someone who will take it off the page, or a partnership that does not have a name yet.",
+      body: "Open to a conversation in Balneário Camboriú or remote — a stuck product, a team that needs someone who will take it off the page, or a partnership that does not have a name yet.",
       emailLabel: "Write",
       email: "viniciuswhack@gmail.com",
       linksLabel: "Elsewhere",
     },
     footer: {
       rights: "© 2026 Vinícius Hack",
-      place: "Balneário Camboriú, Brazil",
+      place: "Balneário Camboriú, Santa Catarina, Brazil",
     },
     notFound: {
       title: "This page is not here.",
