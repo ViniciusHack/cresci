@@ -8,6 +8,7 @@ const LINKS = [
   { label: "Instagram", handle: "@viniwhack", href: "https://www.instagram.com/viniwhack/", external: true },
   { label: "LinkedIn", handle: "in/viniciushack", href: "https://www.linkedin.com/in/viniciushack/", external: true },
   { label: "Site", handle: "viniciushack.com", href: "/", external: false },
+  { label: "WhatsApp", handle: "(47) 99266-4694", href: "https://wa.me/5547992664694", external: true },
 ] as const;
 
 export const Route = createFileRoute("/links")({
