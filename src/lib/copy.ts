@@ -246,7 +246,7 @@ export const copies: Record<Locale, Copy> = {
       location: "Balneário Camboriú, SC",
       year: "2026",
       nowLabel: "Agora",
-      now: ["Layback", "MyTribe", "Your Daily Cards"],
+      now: ["Layback", "MyTribe"],
       talk: "Conversar",
     },
     thinking: {
@@ -316,7 +316,7 @@ export const copies: Record<Locale, Copy> = {
           title: "MyTribe",
           metric: "iOS / Android",
           body: "App de comunidades digitais: pessoas por cidade, mensagem, RSVP, push. Backend no Supabase, admin em Next.js com Stripe, convite com deep link. Eu queria um produto em que a conversa tenha para onde ir.",
-          href: "https://my-tribe-landing.vercel.app/",
+          href: "https://usemytribe.com/",
         },
         {
           id: "ritmo",
@@ -331,13 +331,6 @@ export const copies: Record<Locale, Copy> = {
           metric: "IA",
           body: "Agregador financeiro: Open Finance, cotações, patrimônio, fluxo de caixa e plano de aportes. Todo dia, o Claude lê os dados e escreve a leitura do mês em blocos visuais.",
           href: "/projetos/finance-hub",
-        },
-        {
-          id: "cards",
-          title: "Your Daily Cards",
-          metric: "app store",
-          body: "Hábitos e intenções viram a mão do dia e missões aleatórias com XP. Sem conta, sem servidor, PT e EN. O app cabe no aparelho — e essa restrição é o produto.",
-          href: "https://apps.apple.com/app/id6767341939",
         },
         {
           id: "bot",
@@ -519,7 +512,7 @@ export const copies: Record<Locale, Copy> = {
       location: "Balneário Camboriú, Brazil",
       year: "2026",
       nowLabel: "Now",
-      now: ["Layback", "MyTribe", "Your Daily Cards"],
+      now: ["Layback", "MyTribe"],
       talk: "Start a conversation",
     },
     thinking: {
@@ -589,7 +582,7 @@ export const copies: Record<Locale, Copy> = {
           title: "MyTribe",
           metric: "iOS / Android",
           body: "A social app for digital communities: people by city, messaging, RSVP, push. Supabase on the back, a Next.js admin with Stripe, invites with deep links. I wanted a product where the conversation has somewhere to go.",
-          href: "https://my-tribe-landing.vercel.app/",
+          href: "https://usemytribe.com/",
         },
         {
           id: "ritmo",
@@ -604,13 +597,6 @@ export const copies: Record<Locale, Copy> = {
           metric: "AI",
           body: "A finance aggregator: Open Finance, quotes, net worth, cash flow and a monthly investing plan. Every day, Claude reads the data and writes the month's summary as visual blocks. (Case study in Portuguese.)",
           href: "/projetos/finance-hub",
-        },
-        {
-          id: "cards",
-          title: "Your Daily Cards",
-          metric: "app store",
-          body: "Habits and intentions become a daily hand and timed missions with XP. No account, no server, PT and EN. The app lives on the phone — and that constraint is the product.",
-          href: "https://apps.apple.com/app/id6767341939",
         },
         {
           id: "bot",

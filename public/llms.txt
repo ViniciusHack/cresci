@@ -16,7 +16,6 @@ Vinícius Wilbert Hack (Vinícius Hack) is a software engineer, developer and pr
 - Automatize — AI agent so a non-technical client can create, pause and read paid-traffic campaigns in the app and WhatsApp
 - Layback Trading — white-label trading platform (100k+ users/day), NestJS APIs and Rust bot engine
 - MyTribe — iOS/Android social app
-- Your Daily Cards — mobile app
 - Alento Foto & Filme — wedding photography site, freelance from scratch to paying clients
 - Goalfy — Stripe payments and react-flow diagrams
 
