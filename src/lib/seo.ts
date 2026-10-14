@@ -1,4 +1,5 @@
 import { copies, type Locale } from "./copy";
+import { caseStudies } from "./projects";
 import {
   absoluteLocalizedUrl,
   localeFromLocation,
@@ -25,6 +26,8 @@ export type PageHeadInput = {
   path?: string;
   locale?: Locale;
   index?: boolean;
+  /** Página só em pt-BR: sem hreflang para uma versão em inglês que não existe. */
+  alternates?: boolean;
 };
 
 export function copyForLocation(pathname: string, search?: unknown) {
@@ -38,6 +41,7 @@ export function pageHead({
   path = "/",
   locale = "pt-BR",
   index = true,
+  alternates = index,
 }: PageHeadInput) {
   const url = absoluteLocalizedUrl(path, locale);
   const ogImage = absoluteUrl(OG_IMAGE_PATH);
@@ -77,7 +81,7 @@ export function pageHead({
     ],
     links: [
       { rel: "canonical", href: url },
-      ...(index ? languageAlternates(path) : []),
+      ...(alternates ? languageAlternates(path) : []),
     ],
   };
 }
@@ -208,6 +212,7 @@ export function sitemapXml(): string {
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${pages.map((path) => sitemapEntry(path, today)).join("\n")}
+${caseStudies.map((study) => caseStudyEntry(study.path, today)).join("\n")}
 </urlset>
 `;
 }
@@ -233,6 +238,15 @@ ${links}
     <changefreq>monthly</changefreq>
     <priority>${path === "/" ? "0.8" : "0.3"}</priority>
 ${links}
+  </url>`;
+}
+
+function caseStudyEntry(path: string, lastmod: string): string {
+  return `  <url>
+    <loc>${absoluteUrl(path)}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>`;
 }
 

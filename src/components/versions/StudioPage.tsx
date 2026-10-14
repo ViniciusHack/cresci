@@ -23,6 +23,8 @@ const PROJECT_CYCLE_MS = 5000;
 const stacks: Record<string, string[]> = {
   alento: ["React", "TypeScript", "Supabase"],
   mytribe: ["Expo", "Supabase", "Stripe"],
+  ritmo: ["Swift", "SwiftUI", "SQLite", "local-first"],
+  financehub: ["Next.js", "Postgres", "Open Finance", "Claude"],
   cards: ["React Native", "local-first"],
   bot: ["NestJS", "Rust"],
   simulation: ["Firebase", "BullMQ", "Postgres"],
@@ -37,6 +39,8 @@ const covers: Record<
 > = {
   alento: { kind: "photo", src: "/comercial/alento.jpg", tone: "" },
   mytribe: { kind: "photo", src: "/comercial/mytribe.jpg", tone: "" },
+  ritmo: { kind: "photo", src: "/projetos/ritmo/inicio.png", tone: "" },
+  financehub: { kind: "photo", src: "/projetos/finance-hub/home.jpg", tone: "" },
   cards: { kind: "device", src: "/comercial/cards-today.png", tone: "" },
   bot: { kind: "photo", src: "/comercial/bot.jpg", tone: "" },
   simulation: { kind: "photo", src: "/comercial/backtest.jpg", tone: "" },
@@ -657,8 +661,7 @@ function ProjectShowcase({
             {active.href ? (
               <a
                 href={active.href}
-                target="_blank"
-                rel="noreferrer"
+                {...(active.href.startsWith("/") ? {} : { target: "_blank", rel: "noreferrer" })}
                 className="mt-5 inline-flex cursor-pointer items-center gap-1 text-sm font-medium text-[var(--s-accent)]"
               >
                 {linkLabel}

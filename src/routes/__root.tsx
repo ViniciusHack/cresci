@@ -113,7 +113,7 @@ function RootShell({ children }: { children: ReactNode }) {
         <script
           dangerouslySetInnerHTML={{
             __html:
-              '(function(){try{var p=location.pathname;if(p!=="/"&&p!=="")return;var d=localStorage.getItem("studio-theme")==="dark";document.documentElement.dataset.theme=d?"dark":"light";document.documentElement.style.colorScheme=d?"dark":"light"}catch(e){}})();',
+              '(function(){try{var p=location.pathname;if(p!=="/"&&p!==""&&p.indexOf("/projetos/")!==0)return;var d=localStorage.getItem("studio-theme")==="dark";document.documentElement.dataset.theme=d?"dark":"light";document.documentElement.style.colorScheme=d?"dark":"light"}catch(e){}})();',
           }}
         />
       </head>

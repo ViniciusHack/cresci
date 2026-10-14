@@ -11,6 +11,7 @@ import {
 
 import { copies, type Copy, type Locale } from "./copy";
 import { localeFromLocation, localizedPath, stripLocalePrefix } from "./locale";
+import { caseStudyForPath } from "./projects";
 import { SITE_URL } from "./site";
 
 type I18nContextValue = {
@@ -34,6 +35,8 @@ function upsertMeta(selector: string, attr: "name" | "property", key: string, co
 function pageCopy(copy: Copy, pathname: string) {
   const rest = stripLocalePrefix(pathname);
   if (rest === "/versoes") return copy.versions.meta;
+  const study = caseStudyForPath(rest);
+  if (study) return study.meta;
   return copy.meta;
 }
 

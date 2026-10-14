@@ -16,6 +16,8 @@ import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as VersoesRouteImport } from './routes/versoes'
 import { Route as EnVersoesRouteImport } from './routes/en.versoes'
+import { Route as ProjetosFinanceHubRouteImport } from './routes/projetos.finance-hub'
+import { Route as ProjetosRitmoRouteImport } from './routes/projetos.ritmo'
 import { Route as VBrutalRouteImport } from './routes/v.brutal'
 import { Route as VEditorialRouteImport } from './routes/v.editorial'
 import { Route as VNoirRouteImport } from './routes/v.noir'
@@ -56,6 +58,16 @@ const EnVersoesRoute = EnVersoesRouteImport.update({
   path: '/versoes',
   getParentRoute: () => EnRoute,
 } as any)
+const ProjetosFinanceHubRoute = ProjetosFinanceHubRouteImport.update({
+  id: '/projetos/finance-hub',
+  path: '/projetos/finance-hub',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjetosRitmoRoute = ProjetosRitmoRouteImport.update({
+  id: '/projetos/ritmo',
+  path: '/projetos/ritmo',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const VBrutalRoute = VBrutalRouteImport.update({
   id: '/v/brutal',
   path: '/v/brutal',
@@ -85,6 +97,8 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/versoes': typeof VersoesRoute
   '/en/versoes': typeof EnVersoesRoute
+  '/projetos/finance-hub': typeof ProjetosFinanceHubRoute
+  '/projetos/ritmo': typeof ProjetosRitmoRoute
   '/v/brutal': typeof VBrutalRoute
   '/v/editorial': typeof VEditorialRoute
   '/v/noir': typeof VNoirRoute
@@ -98,6 +112,8 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/versoes': typeof VersoesRoute
   '/en/versoes': typeof EnVersoesRoute
+  '/projetos/finance-hub': typeof ProjetosFinanceHubRoute
+  '/projetos/ritmo': typeof ProjetosRitmoRoute
   '/v/brutal': typeof VBrutalRoute
   '/v/editorial': typeof VEditorialRoute
   '/v/noir': typeof VNoirRoute
@@ -112,6 +128,8 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/versoes': typeof VersoesRoute
   '/en/versoes': typeof EnVersoesRoute
+  '/projetos/finance-hub': typeof ProjetosFinanceHubRoute
+  '/projetos/ritmo': typeof ProjetosRitmoRoute
   '/v/brutal': typeof VBrutalRoute
   '/v/editorial': typeof VEditorialRoute
   '/v/noir': typeof VNoirRoute
@@ -127,6 +145,8 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/versoes'
     | '/en/versoes'
+    | '/projetos/finance-hub'
+    | '/projetos/ritmo'
     | '/v/brutal'
     | '/v/editorial'
     | '/v/noir'
@@ -140,6 +160,8 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/versoes'
     | '/en/versoes'
+    | '/projetos/finance-hub'
+    | '/projetos/ritmo'
     | '/v/brutal'
     | '/v/editorial'
     | '/v/noir'
@@ -153,6 +175,8 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/versoes'
     | '/en/versoes'
+    | '/projetos/finance-hub'
+    | '/projetos/ritmo'
     | '/v/brutal'
     | '/v/editorial'
     | '/v/noir'
@@ -166,6 +190,8 @@ export interface RootRouteChildren {
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   VersoesRoute: typeof VersoesRoute
+  ProjetosFinanceHubRoute: typeof ProjetosFinanceHubRoute
+  ProjetosRitmoRoute: typeof ProjetosRitmoRoute
   VBrutalRoute: typeof VBrutalRoute
   VEditorialRoute: typeof VEditorialRoute
   VNoirRoute: typeof VNoirRoute
@@ -223,6 +249,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EnVersoesRouteImport
       parentRoute: typeof EnRoute
     }
+    '/projetos/finance-hub': {
+      id: '/projetos/finance-hub'
+      path: '/projetos/finance-hub'
+      fullPath: '/projetos/finance-hub'
+      preLoaderRoute: typeof ProjetosFinanceHubRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projetos/ritmo': {
+      id: '/projetos/ritmo'
+      path: '/projetos/ritmo'
+      fullPath: '/projetos/ritmo'
+      preLoaderRoute: typeof ProjetosRitmoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/v/brutal': {
       id: '/v/brutal'
       path: '/v/brutal'
@@ -271,6 +311,8 @@ const rootRouteChildren: RootRouteChildren = {
   RobotsDottxtRoute: RobotsDottxtRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   VersoesRoute: VersoesRoute,
+  ProjetosFinanceHubRoute: ProjetosFinanceHubRoute,
+  ProjetosRitmoRoute: ProjetosRitmoRoute,
   VBrutalRoute: VBrutalRoute,
   VEditorialRoute: VEditorialRoute,
   VNoirRoute: VNoirRoute,

@@ -319,6 +319,20 @@ export const copies: Record<Locale, Copy> = {
           href: "https://my-tribe-landing.vercel.app/",
         },
         {
+          id: "ritmo",
+          title: "Ritmo",
+          metric: "Mac + iPhone",
+          body: "App nativo que mede sozinho o uso do computador e do celular, aprende a semana típica e avisa na hora certa — com um coach que confronta o que você faz com as suas prioridades. Tudo local, sem servidor.",
+          href: "/projetos/ritmo",
+        },
+        {
+          id: "financehub",
+          title: "Finance Hub",
+          metric: "IA",
+          body: "Agregador financeiro: Open Finance, cotações, patrimônio, fluxo de caixa e plano de aportes. Todo dia, o Claude lê os dados e escreve a leitura do mês em blocos visuais.",
+          href: "/projetos/finance-hub",
+        },
+        {
           id: "cards",
           title: "Your Daily Cards",
           metric: "app store",
@@ -576,6 +590,20 @@ export const copies: Record<Locale, Copy> = {
           metric: "iOS / Android",
           body: "A social app for digital communities: people by city, messaging, RSVP, push. Supabase on the back, a Next.js admin with Stripe, invites with deep links. I wanted a product where the conversation has somewhere to go.",
           href: "https://my-tribe-landing.vercel.app/",
+        },
+        {
+          id: "ritmo",
+          title: "Ritmo",
+          metric: "Mac + iPhone",
+          body: "A native app that tracks computer and phone use on its own, learns your typical week and nudges at the right time — with a coach that holds what you're doing up against your priorities. Fully local, no server. (Case study in Portuguese.)",
+          href: "/projetos/ritmo",
+        },
+        {
+          id: "financehub",
+          title: "Finance Hub",
+          metric: "AI",
+          body: "A finance aggregator: Open Finance, quotes, net worth, cash flow and a monthly investing plan. Every day, Claude reads the data and writes the month's summary as visual blocks. (Case study in Portuguese.)",
+          href: "/projetos/finance-hub",
         },
         {
           id: "cards",
