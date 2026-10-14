@@ -34,7 +34,7 @@ const stacks: Record<string, string[]> = {
 
 const covers: Record<
   string,
-  { kind: "device" | "photo" | "cover"; src?: string; tone: string }
+  { kind: "device" | "photo" | "cover" | "video"; src?: string; poster?: string; tone: string }
 > = {
   alento: { kind: "photo", src: "/comercial/alento.jpg", tone: "" },
   mytribe: { kind: "photo", src: "/comercial/mytribe.jpg", tone: "" },
@@ -42,9 +42,9 @@ const covers: Record<
   financehub: { kind: "photo", src: "/projetos/finance-hub/home.jpg", tone: "" },
   bot: { kind: "photo", src: "/comercial/bot.jpg", tone: "" },
   simulation: { kind: "photo", src: "/comercial/backtest.jpg", tone: "" },
-  automatize: { kind: "photo", src: "/comercial/automatize.jpg", tone: "" },
+  automatize: { kind: "video", src: "/comercial/automatize-mat.mp4", poster: "/comercial/automatize-mat.jpg", tone: "" },
   goalfy: { kind: "photo", src: "/comercial/goalfy.jpg", tone: "" },
-  whitelabel: { kind: "cover", tone: "from-slate-800 to-slate-950" },
+  whitelabel: { kind: "photo", src: "/comercial/whitelabel.jpg", tone: "" },
 };
 
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -768,6 +768,28 @@ function ProjectMedia({
           whileHover={reduce ? undefined : { y: -6, rotate: -2 }}
           transition={{ duration: 0.4, ease }}
         />
+      </div>
+    );
+  }
+
+  if (cover?.kind === "video" && cover.src) {
+    return (
+      <div className="overflow-hidden bg-[var(--s-chip)]">
+        {reduce ? (
+          <img src={cover.poster} alt={title} width={1600} height={1000} decoding="async" className="aspect-[16/10] w-full object-cover" />
+        ) : (
+          <video
+            src={cover.src}
+            poster={cover.poster}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-label={title}
+            className="aspect-[16/10] w-full object-cover"
+          />
+        )}
       </div>
     );
   }
