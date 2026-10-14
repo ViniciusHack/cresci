@@ -34,15 +34,15 @@ const stacks: Record<string, string[]> = {
 
 const covers: Record<
   string,
-  { kind: "device" | "photo" | "cover" | "video"; src?: string; poster?: string; tone: string }
+  { kind: "device" | "photo" | "cover" | "video"; src?: string; poster?: string; tone: string; cycleMs?: number }
 > = {
   alento: { kind: "photo", src: "/comercial/alento.jpg", tone: "" },
   mytribe: { kind: "photo", src: "/comercial/mytribe.jpg", tone: "" },
-  ritmo: { kind: "photo", src: "/projetos/ritmo/inicio.png", tone: "" },
-  financehub: { kind: "photo", src: "/projetos/finance-hub/home.jpg", tone: "" },
+  ritmo: { kind: "video", src: "/media/ritmo.mp4", poster: "/comercial/ritmo.jpg", tone: "", cycleMs: 16000 },
+  financehub: { kind: "video", src: "/media/finance-hub.mp4", poster: "/comercial/finance-hub.jpg", tone: "", cycleMs: 15500 },
   bot: { kind: "photo", src: "/comercial/bot.jpg", tone: "" },
   simulation: { kind: "photo", src: "/comercial/backtest.jpg", tone: "" },
-  automatize: { kind: "video", src: "/comercial/automatize-mat.mp4", poster: "/comercial/automatize-mat.jpg", tone: "" },
+  automatize: { kind: "video", src: "/media/automatize.mp4", poster: "/comercial/automatize.jpg", tone: "", cycleMs: 17000 },
   goalfy: { kind: "photo", src: "/comercial/goalfy.jpg", tone: "" },
   whitelabel: { kind: "photo", src: "/comercial/whitelabel.jpg", tone: "" },
 };
@@ -541,6 +541,8 @@ function ProjectShowcase({
   const active = items.find((item) => item.id === activeId) ?? items[0];
   const tags = stacks[active?.id ?? ""] ?? [];
   const cover = covers[active?.id ?? ""];
+  // Capa em vídeo: o ciclo espera o vídeo inteiro.
+  const cycleMs = cover?.cycleMs ?? PROJECT_CYCLE_MS;
 
   useEffect(() => {
     progressRef.current = 0;
@@ -550,10 +552,10 @@ function ProjectShowcase({
   useEffect(() => {
     if (reduce || paused || !inView || items.length < 2) return;
 
-    const startedAt = Date.now() - (progressRef.current / 100) * PROJECT_CYCLE_MS;
+    const startedAt = Date.now() - (progressRef.current / 100) * cycleMs;
     let stepped = false;
     const id = window.setInterval(() => {
-      const nextProgress = Math.min(100, ((Date.now() - startedAt) / PROJECT_CYCLE_MS) * 100);
+      const nextProgress = Math.min(100, ((Date.now() - startedAt) / cycleMs) * 100);
       progressRef.current = nextProgress;
       setProgress(nextProgress);
       if (nextProgress < 100 || stepped) return;
@@ -565,7 +567,7 @@ function ProjectShowcase({
     }, 50);
 
     return () => window.clearInterval(id);
-  }, [activeId, inView, items, paused, reduce]);
+  }, [activeId, cycleMs, inView, items, paused, reduce]);
 
   useEffect(() => {
     if (skipChipScroll.current) {

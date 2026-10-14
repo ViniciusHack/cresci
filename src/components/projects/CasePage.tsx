@@ -9,7 +9,9 @@ import { CALENDLY_URL } from "../../lib/site";
 
 export function CasePage({ study }: { study: CaseStudy }) {
   const other = caseStudies.find((item) => item.slug !== study.slug);
-  const [hero, ...rest] = study.shots;
+  // Com vídeo, ele abre a página e todos os prints vão para a seção de baixo.
+  const hero = study.video ? undefined : study.shots[0];
+  const rest = study.video ? study.shots : study.shots.slice(1);
 
   return (
     <div className="studio-shell min-h-svh font-sans">
@@ -50,7 +52,33 @@ export function CasePage({ study }: { study: CaseStudy }) {
               {study.headline}
             </p>
             <p className="mt-4 max-w-2xl text-[1.05rem] leading-relaxed text-[var(--s-muted)]">{study.lead}</p>
-            <dl className="mt-10 grid grid-cols-2 gap-3 md:grid-cols-4">
+            {study.video ? (
+              <div className="mt-8 overflow-hidden rounded-2xl shadow-xl ring-1 ring-[var(--s-line)] md:mt-10">
+                <video
+                  src={study.video.src}
+                  poster={study.video.poster}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  aria-label={`${study.name} em movimento`}
+                  className="aspect-[16/10] h-auto w-full motion-reduce:hidden"
+                />
+                <img
+                  src={study.video.poster}
+                  alt={`${study.name}: tela principal`}
+                  width={1600}
+                  height={1000}
+                  className="hidden h-auto w-full motion-reduce:block"
+                />
+              </div>
+            ) : hero ? (
+              <div className="mt-8 md:mt-10">
+                <Shot shot={hero} priority />
+              </div>
+            ) : null}
+            <dl className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-4">
               {study.facts.map((fact) => (
                 <div key={fact.label} className="rounded-xl border border-[var(--s-line)] bg-[var(--s-bg-2)] px-4 py-3">
                   <dt className="sr-only">{fact.label}</dt>
@@ -61,11 +89,6 @@ export function CasePage({ study }: { study: CaseStudy }) {
                 </div>
               ))}
             </dl>
-            {hero ? (
-              <div className="mt-12 md:mt-16">
-                <Shot shot={hero} priority />
-              </div>
-            ) : null}
           </div>
         </section>
 

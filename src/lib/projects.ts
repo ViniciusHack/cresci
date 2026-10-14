@@ -28,6 +28,8 @@ export type CaseStudy = {
   facts: Array<{ value: string; label: string }>;
   problem: { title: string; body: string };
   shots: CaseShot[];
+  /** Vídeo curto no topo da página (passa por /media para tocar no iPhone). */
+  video?: { src: string; poster: string };
   featuresTitle: string;
   featuresLead: string;
   features: CaseFeature[];
@@ -40,6 +42,7 @@ export const ritmo: CaseStudy = {
   slug: "ritmo",
   path: "/projetos/ritmo",
   name: "Ritmo",
+  video: { src: "/media/ritmo.mp4", poster: "/comercial/ritmo.jpg" },
   kicker: "Mac + iPhone · ecossistema pessoal",
   headline: "Mede o seu dia sem você apertar play.",
   lead: "App nativo que mede sozinho o uso do computador e do celular, aprende a sua semana típica e avisa na hora certa — inclusive quando o que você está fazendo não é o que importa. Tudo local.",
@@ -175,6 +178,7 @@ export const financeHub: CaseStudy = {
   slug: "finance-hub",
   path: "/projetos/finance-hub",
   name: "Finance Hub",
+  video: { src: "/media/finance-hub.mp4", poster: "/comercial/finance-hub.jpg" },
   kicker: "Web + PWA · ecossistema pessoal",
   headline: "Todas as contas num painel que lê os números por você.",
   lead: "Agregador financeiro: puxa bancos e cartões pelo Open Finance, cotações de ações e cripto, e mostra patrimônio, fluxo de caixa e o aporte do mês. Todo dia, uma IA lê os dados e escreve o que mudou.",

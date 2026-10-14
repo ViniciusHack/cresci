@@ -16,6 +16,7 @@ import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as VersoesRouteImport } from './routes/versoes'
 import { Route as EnVersoesRouteImport } from './routes/en.versoes'
+import { Route as MediaFileRouteImport } from './routes/media.$file'
 import { Route as ProjetosFinanceHubRouteImport } from './routes/projetos.finance-hub'
 import { Route as ProjetosRitmoRouteImport } from './routes/projetos.ritmo'
 import { Route as VBrutalRouteImport } from './routes/v.brutal'
@@ -58,6 +59,11 @@ const EnVersoesRoute = EnVersoesRouteImport.update({
   path: '/versoes',
   getParentRoute: () => EnRoute,
 } as any)
+const MediaFileRoute = MediaFileRouteImport.update({
+  id: '/media/$file',
+  path: '/media/$file',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProjetosFinanceHubRoute = ProjetosFinanceHubRouteImport.update({
   id: '/projetos/finance-hub',
   path: '/projetos/finance-hub',
@@ -97,6 +103,7 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/versoes': typeof VersoesRoute
   '/en/versoes': typeof EnVersoesRoute
+  '/media/$file': typeof MediaFileRoute
   '/projetos/finance-hub': typeof ProjetosFinanceHubRoute
   '/projetos/ritmo': typeof ProjetosRitmoRoute
   '/v/brutal': typeof VBrutalRoute
@@ -112,6 +119,7 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/versoes': typeof VersoesRoute
   '/en/versoes': typeof EnVersoesRoute
+  '/media/$file': typeof MediaFileRoute
   '/projetos/finance-hub': typeof ProjetosFinanceHubRoute
   '/projetos/ritmo': typeof ProjetosRitmoRoute
   '/v/brutal': typeof VBrutalRoute
@@ -128,6 +136,7 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/versoes': typeof VersoesRoute
   '/en/versoes': typeof EnVersoesRoute
+  '/media/$file': typeof MediaFileRoute
   '/projetos/finance-hub': typeof ProjetosFinanceHubRoute
   '/projetos/ritmo': typeof ProjetosRitmoRoute
   '/v/brutal': typeof VBrutalRoute
@@ -145,6 +154,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/versoes'
     | '/en/versoes'
+    | '/media/$file'
     | '/projetos/finance-hub'
     | '/projetos/ritmo'
     | '/v/brutal'
@@ -160,6 +170,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/versoes'
     | '/en/versoes'
+    | '/media/$file'
     | '/projetos/finance-hub'
     | '/projetos/ritmo'
     | '/v/brutal'
@@ -175,6 +186,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/versoes'
     | '/en/versoes'
+    | '/media/$file'
     | '/projetos/finance-hub'
     | '/projetos/ritmo'
     | '/v/brutal'
@@ -190,6 +202,7 @@ export interface RootRouteChildren {
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   VersoesRoute: typeof VersoesRoute
+  MediaFileRoute: typeof MediaFileRoute
   ProjetosFinanceHubRoute: typeof ProjetosFinanceHubRoute
   ProjetosRitmoRoute: typeof ProjetosRitmoRoute
   VBrutalRoute: typeof VBrutalRoute
@@ -248,6 +261,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/en/versoes'
       preLoaderRoute: typeof EnVersoesRouteImport
       parentRoute: typeof EnRoute
+    }
+    '/media/$file': {
+      id: '/media/$file'
+      path: '/media/$file'
+      fullPath: '/media/$file'
+      preLoaderRoute: typeof MediaFileRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/projetos/finance-hub': {
       id: '/projetos/finance-hub'
@@ -311,6 +331,7 @@ const rootRouteChildren: RootRouteChildren = {
   RobotsDottxtRoute: RobotsDottxtRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   VersoesRoute: VersoesRoute,
+  MediaFileRoute: MediaFileRoute,
   ProjetosFinanceHubRoute: ProjetosFinanceHubRoute,
   ProjetosRitmoRoute: ProjetosRitmoRoute,
   VBrutalRoute: VBrutalRoute,
