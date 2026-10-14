@@ -42,7 +42,7 @@ const covers: Record<
   financehub: { kind: "video", src: "/media/finance-hub.mp4", poster: "/comercial/finance-hub.jpg", tone: "", cycleMs: 15500 },
   bot: { kind: "photo", src: "/comercial/bot.jpg", tone: "" },
   simulation: { kind: "photo", src: "/comercial/backtest.jpg", tone: "" },
-  automatize: { kind: "video", src: "/media/automatize.mp4", poster: "/comercial/automatize.jpg", tone: "", cycleMs: 17000 },
+  automatize: { kind: "video", src: "/media/automatize.mp4", poster: "/comercial/automatize.jpg", tone: "", cycleMs: 23600 },
   goalfy: { kind: "photo", src: "/comercial/goalfy.jpg", tone: "" },
   whitelabel: { kind: "photo", src: "/comercial/whitelabel.jpg", tone: "" },
 };
