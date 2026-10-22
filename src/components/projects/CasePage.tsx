@@ -8,10 +8,14 @@ import { CALENDLY_URL } from "../../lib/site";
 // Os blocos do bento são pedaços do app desenhados pequenos, com dados genéricos.
 
 export function CasePage({ study }: { study: CaseStudy }) {
-  const other = caseStudies.find((item) => item.slug !== study.slug);
+  const index = caseStudies.findIndex((item) => item.slug === study.slug);
+  const other = caseStudies[(index + 1) % caseStudies.length];
   // Com vídeo, ele abre a página e todos os prints vão para a seção de baixo.
   const hero = study.video ? undefined : study.shots[0];
-  const rest = study.video ? study.shots : study.shots.slice(1);
+  const below = study.video ? study.shots : study.shots.slice(1);
+  // Prints de iPhone vão juntos, lado a lado, depois dos outros.
+  const rest = below.filter((shot) => shot.frame !== "phone");
+  const phones = below.filter((shot) => shot.frame === "phone");
 
   return (
     <div className="studio-shell min-h-svh font-sans">
@@ -52,6 +56,16 @@ export function CasePage({ study }: { study: CaseStudy }) {
               {study.headline}
             </p>
             <p className="mt-4 max-w-2xl text-[1.05rem] leading-relaxed text-[var(--s-muted)]">{study.lead}</p>
+            {study.site ? (
+              <a
+                href={study.site.href}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-6 inline-flex min-h-11 items-center gap-1.5 rounded-md border border-[var(--s-line)] px-4 text-sm font-medium transition-colors hover:border-[var(--s-accent)] hover:text-[var(--s-accent)]"
+              >
+                {study.site.label} <span aria-hidden>↗</span>
+              </a>
+            ) : null}
             {study.video ? (
               <div className="mt-8 overflow-hidden rounded-2xl shadow-xl ring-1 ring-[var(--s-line)] md:mt-10">
                 <video
@@ -95,16 +109,110 @@ export function CasePage({ study }: { study: CaseStudy }) {
         <section className="border-y border-[var(--s-line)] bg-[var(--s-bg-2)] py-12 md:py-16">
           <Reveal className="mx-auto grid max-w-5xl gap-4 px-5 md:grid-cols-[11rem_minmax(0,1fr)] md:gap-8">
             <p className="text-sm font-medium text-[var(--s-accent)]">{study.problem.title}</p>
-            <p className="max-w-3xl text-[clamp(1.15rem,2.2vw,1.45rem)] leading-snug tracking-tight">{study.problem.body}</p>
+            <div>
+              <p className="max-w-3xl text-[clamp(1.15rem,2.2vw,1.45rem)] leading-snug tracking-tight">{study.problem.body}</p>
+              {study.problem.points?.length ? (
+                <ul className="mt-6 grid max-w-3xl gap-3 sm:grid-cols-2">
+                  {study.problem.points.map((point) => (
+                    <li
+                      key={point}
+                      className="flex gap-2.5 rounded-xl border border-[var(--s-line)] bg-[var(--s-bg)] px-4 py-3 text-sm leading-relaxed text-[var(--s-muted)]"
+                    >
+                      <span aria-hidden className="mt-[0.45rem] size-1.5 shrink-0 rounded-full bg-[var(--s-accent)]" />
+                      {point}
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+            </div>
           </Reveal>
         </section>
 
-        {rest.length ? (
+        {study.delivers ? (
+          <section className="py-14 md:py-20">
+            <div className="mx-auto max-w-5xl px-5">
+              <Reveal>
+                <p className="text-sm font-medium text-[var(--s-accent)]">Entrega</p>
+                <h2 className="mt-2 text-3xl font-semibold tracking-tight">{study.delivers.title}</h2>
+                <p className="mt-3 max-w-xl text-[var(--s-muted)]">{study.delivers.lead}</p>
+              </Reveal>
+              <div className="mt-10 grid gap-4 md:grid-cols-3">
+                {study.delivers.parts.map((part, partIndex) => (
+                  <Reveal key={part.title} className="h-full">
+                    <article className="flex h-full flex-col rounded-2xl border border-[var(--s-line)] bg-[var(--s-bg-2)] p-5">
+                      <p className="font-mono text-[11px] text-[var(--s-soft)]">
+                        {String(partIndex + 1).padStart(2, "0")} · {part.label}
+                      </p>
+                      <h3 className="mt-2 text-xl font-semibold tracking-tight">{part.title}</h3>
+                      <p className="mt-1.5 text-sm leading-relaxed text-[var(--s-muted)]">{part.body}</p>
+                      <ul className="mt-4 grid gap-2 border-t border-[var(--s-line)] pt-4">
+                        {part.items.map((item) => (
+                          <li key={item} className="flex gap-2 text-sm leading-snug">
+                            <span aria-hidden className="text-[var(--s-accent)]">
+                              ✓
+                            </span>
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </article>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          </section>
+        ) : null}
+
+        {rest.length || phones.length ? (
           <section className="py-14 md:py-20">
             <div className="mx-auto max-w-5xl space-y-12 px-5 md:space-y-16">
               {rest.map((shot) => (
                 <Shot key={shot.src} shot={shot} priority={false} />
               ))}
+              {phones.length ? (
+                <div className="grid gap-10 sm:grid-cols-2">
+                  {phones.map((shot) => (
+                    <Shot key={shot.src} shot={shot} priority={false} />
+                  ))}
+                </div>
+              ) : null}
+            </div>
+          </section>
+        ) : null}
+
+        {study.process ? (
+          <section className="border-t border-[var(--s-line)] py-14 md:py-20">
+            <div className="mx-auto max-w-5xl px-5">
+              <Reveal>
+                <p className="text-sm font-medium text-[var(--s-accent)]">Processo</p>
+                <h2 className="mt-2 text-3xl font-semibold tracking-tight">{study.process.title}</h2>
+                <p className="mt-3 max-w-xl text-[var(--s-muted)]">{study.process.lead}</p>
+              </Reveal>
+              <ol className="mt-10 grid gap-3">
+                {study.process.steps.map((step, stepIndex) => (
+                  <li key={step.step}>
+                    <Reveal className="grid gap-3 rounded-2xl border border-[var(--s-line)] bg-[var(--s-bg-2)] p-4 md:grid-cols-[12rem_minmax(0,1fr)_auto_minmax(0,1fr)] md:items-center md:gap-5 md:px-5">
+                      <p className="flex items-baseline gap-2 font-semibold tracking-tight">
+                        <span className="font-mono text-[11px] font-normal text-[var(--s-soft)]">
+                          {String(stepIndex + 1).padStart(2, "0")}
+                        </span>
+                        {step.step}
+                      </p>
+                      <p className="text-sm leading-relaxed text-[var(--s-muted)]">
+                        <span className="mb-0.5 block text-[11px] font-medium text-[var(--s-soft)] md:hidden">{study.process?.labels?.[0] ?? "Antes"}</span>
+                        {step.before}
+                      </p>
+                      <span aria-hidden className="hidden text-[var(--s-accent)] md:block">
+                        →
+                      </span>
+                      <p className="text-sm leading-relaxed">
+                        <span className="mb-0.5 block text-[11px] font-medium text-[var(--s-accent)] md:hidden">{study.process?.labels?.[1] ?? "Depois"}</span>
+                        {step.after}
+                      </p>
+                    </Reveal>
+                  </li>
+                ))}
+              </ol>
             </div>
           </section>
         ) : null}
@@ -169,9 +277,9 @@ export function CasePage({ study }: { study: CaseStudy }) {
         <section className="px-5 pb-16 md:pb-20">
           <div className="mx-auto flex max-w-5xl flex-col gap-6 rounded-2xl border border-[var(--s-line)] bg-[var(--s-bg-2)] px-5 py-8 md:flex-row md:items-center md:justify-between md:px-10">
             <div>
-              <h2 className="text-2xl font-semibold tracking-tight">Quer algo assim no seu negócio?</h2>
+              <h2 className="text-2xl font-semibold tracking-tight">Quer algo parecido no seu negócio?</h2>
               <p className="mt-2 max-w-md text-sm text-[var(--s-muted)]">
-                Do problema ao app no aparelho de quem usa. Vamos conversar.
+                Me conta o problema e a gente vê juntos o que dá para fazer.
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row">
@@ -188,7 +296,7 @@ export function CasePage({ study }: { study: CaseStudy }) {
                   href={other.path}
                   className="inline-flex min-h-11 items-center justify-center gap-1 rounded-md border border-[var(--s-line)] px-4 text-sm font-medium"
                 >
-                  Ver o {other.name} <span aria-hidden>→</span>
+                  Próximo: {other.name} <span aria-hidden>→</span>
                 </a>
               ) : null}
             </div>
@@ -225,6 +333,24 @@ function Reveal({ children, className = "" }: { children: ReactNode; className?:
 function Shot({ shot, priority }: { shot: CaseShot; priority: boolean }) {
   const card = shot.frame === "card";
   const Wrap = priority ? "div" : Reveal;
+  if (shot.frame === "phone") {
+    return (
+      <Wrap>
+        <figure className="mx-auto max-w-[17rem]">
+          <img
+            src={shot.src}
+            alt={shot.alt}
+            width={shot.width}
+            height={shot.height}
+            loading="lazy"
+            decoding="async"
+            className="h-auto w-full rounded-[2.2rem] shadow-xl ring-1 ring-[var(--s-line)]"
+          />
+          <figcaption className="mt-3 text-sm leading-relaxed text-[var(--s-muted)]">{shot.caption}</figcaption>
+        </figure>
+      </Wrap>
+    );
+  }
   return (
     <Wrap>
       <figure className={card ? "mx-auto max-w-3xl" : ""}>
@@ -303,6 +429,8 @@ function Row({ left, right }: { left: ReactNode; right: ReactNode }) {
   );
 }
 
+const lumeBox = "rounded-xl bg-[#1E1203] p-3 text-[#FBEFD6] shadow-md ring-1 ring-black/10";
+
 const visuals: Record<string, ReactNode> = {
   // Ritmo
   auto: (
@@ -347,7 +475,7 @@ const visuals: Record<string, ReactNode> = {
       <Row left={<b>Instagram · 30 min/dia</b>} right={<Pill tone="bad">passou</Pill>} />
       <Bar value={100} tone="bad" />
       <div className={`rounded-lg bg-[var(--s-chip)] px-2 py-1.5 ${tiny}`}>
-        <span className={soft}>Liberar</span> <b>5 min</b> <span className={soft}>— por quê?</span>
+        <span className={soft}>Liberar</span> <b>5 min</b> <span className={soft}>· por quê?</span>
         <span className="mt-0.5 block">responder um cliente</span>
       </div>
       <p className={`${tiny} ${soft}`}>Mac + iPhone · 3 tentativas no foco</p>
@@ -597,4 +725,243 @@ const visuals: Record<string, ReactNode> = {
       <p className={`${tiny} ${soft}`}>Sinal que reabre: juro real acima de 7% por 3 meses.</p>
     </div>
   ),
+
+  // Alento
+  "a-gallery": (
+    <div className="grid w-full max-w-md gap-3 sm:grid-cols-[1fr_auto]">
+      <div className="grid gap-2 rounded-xl bg-[var(--s-bg-2)] p-3 shadow-sm">
+        <Row left={<span className={soft}>Nome do casal</span>} right={<b>Ana &amp; Pedro</b>} />
+        <Row left={<span className={soft}>Data</span>} right="Março 2026" />
+        <Row left={<span className={soft}>Senha</span>} right={<span className="tracking-widest">••••••</span>} />
+        <Row left={<span className={soft}>Expira em</span>} right="14/09/2026" />
+        <div className="h-px bg-[var(--s-line)]" />
+        <Row left="Galeria ativa" right={<Pill tone="good">sim</Pill>} />
+        <Row left="Pública (aparece no portfólio)" right={<Pill tone="plain">não</Pill>} />
+      </div>
+      <div className="grid content-start gap-2 rounded-xl bg-[var(--s-bg-2)] p-3 shadow-sm sm:w-36">
+        <span className="aspect-[3/4] w-full rounded-lg bg-gradient-to-br from-stone-300 to-stone-500/70" />
+        <p className={`${tiny} ${soft}`}>Capa · 1.412 fotos · 2 filmes</p>
+      </div>
+    </div>
+  ),
+  "a-upload": (
+    <div className={`${box} grid gap-2`}>
+      <Row left={<b>Enviando 640 fotos</b>} right={<span className="tabular-nums">412 / 640</span>} />
+      <Bar value={64} />
+      {[
+        ["IMG_0412.jpg · 18 MB", "ok"],
+        ["IMG_0413.jpg · 22 MB", "ok"],
+        ["IMG_0414.jpg · 27 MB", "subindo"],
+      ].map(([name, state]) => (
+        <Row key={name} left={<span className={soft}>{name}</span>} right={<Pill tone={state === "ok" ? "good" : "accent"}>{state}</Pill>} />
+      ))}
+    </div>
+  ),
+  "a-moments": (
+    <div className="grid w-full max-w-[17rem] gap-2">
+      <div className="flex gap-1.5">
+        <Pill tone="plain">Pré-wedding · 180</Pill>
+        <Pill>Casamento · 1.232</Pill>
+      </div>
+      <div className="flex flex-wrap gap-1.5">
+        {["Dia da Noiva", "Dia do Noivo", "Cerimônia Religiosa", "Cartório", "Festa"].map((moment) => (
+          <span key={moment} className={`rounded-full border border-[var(--s-line)] bg-[var(--s-bg-2)] px-2 py-0.5 ${tiny}`}>
+            {moment}
+          </span>
+        ))}
+      </div>
+      <div className="grid grid-cols-4 gap-1">
+        {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
+          <span key={i} className={`aspect-square rounded ${i % 3 ? "bg-stone-400/40" : "bg-stone-500/50"}`} />
+        ))}
+      </div>
+    </div>
+  ),
+  "a-share": (
+    <div className="grid w-full max-w-[17rem] gap-2">
+      <div className={`flex items-center gap-2 rounded-lg bg-[var(--s-bg-2)] px-3 py-2 shadow-sm ${tiny}`}>
+        <span className={`min-w-0 flex-1 truncate font-mono ${soft}`}>alentofotoefilme.com.br/galeria/k3f…</span>
+        <Pill>Copiar</Pill>
+      </div>
+      <div className="overflow-hidden rounded-xl rounded-tr-sm bg-emerald-500/12 shadow-sm">
+        <span className="block h-16 bg-gradient-to-br from-stone-300 to-stone-500/70" />
+        <p className={`px-3 py-2 ${tiny}`}>
+          <b>Ana &amp; Pedro · Alento Foto &amp; Filme</b>
+          <span className={`block ${soft}`}>A galeria do nosso casamento</span>
+        </p>
+      </div>
+      <p className={`${tiny} ${soft}`}>Revogar o link fecha para todos.</p>
+    </div>
+  ),
+  "a-download": (
+    <div className="grid w-full max-w-[17rem] gap-2.5">
+      <div className="grid grid-cols-3 gap-1">
+        {[0, 1, 2, 3, 4, 5].map((i) => (
+          <span key={i} className="relative aspect-square rounded bg-stone-400/40">
+            {i % 2 === 0 ? (
+              <span className="absolute right-1 top-1 grid size-3.5 place-items-center rounded-full bg-[var(--s-accent)] text-[8px] font-bold text-white">
+                ✓
+              </span>
+            ) : null}
+          </span>
+        ))}
+      </div>
+      <span className="rounded-full bg-[var(--s-accent)] px-3 py-1.5 text-center text-[11px] font-semibold text-white">
+        Baixar 3 selecionadas
+      </span>
+      <span className={`rounded-full border border-[var(--s-line)] px-3 py-1.5 text-center ${tiny} font-semibold`}>
+        Baixar tudo · 1.412 fotos (ZIP)
+      </span>
+      <div className={`rounded-lg bg-[var(--s-bg-2)] p-2 shadow-sm ${tiny}`}>
+        <Row left="ana-e-pedro.zip" right={<span className={soft}>2,1 de 9,8 GB</span>} />
+        <div className="mt-1.5">
+          <Bar value={21} tone="good" />
+        </div>
+        <p className={`mt-1.5 ${soft}`}>No gerenciador de downloads do celular</p>
+      </div>
+    </div>
+  ),
+  "a-films": (
+    <div className="grid w-full max-w-[17rem] gap-2">
+      <div className="flex gap-1.5">
+        <Pill>Trailer</Pill>
+        <Pill tone="plain">Curta-metragem</Pill>
+      </div>
+      <div className="relative grid aspect-video place-items-center rounded-xl bg-gradient-to-br from-stone-500 to-stone-800 shadow-sm">
+        <span className="grid size-9 place-items-center rounded-full bg-white/85 text-[12px] text-stone-800">▶</span>
+        <span className="absolute bottom-1.5 right-2 text-[10px] text-white/80">2:41</span>
+      </div>
+      <Row left={<span className={soft}>Baixar · melhor resolução</span>} right={<b>1080p</b>} />
+    </div>
+  ),
+  "a-expire": (
+    <div className="grid w-full max-w-md gap-2">
+      {[
+        ["Ana & Pedro", "expira em 42 dias", "good"],
+        ["Júlia & Rafael", "expira em 6 dias", "warn"],
+        ["Carla & Tiago", "expirou · 18 GB liberados", "plain"],
+      ].map(([couple, state, tone]) => (
+        <div key={couple} className="flex items-center gap-2 rounded-lg bg-[var(--s-bg-2)] px-3 py-2 shadow-sm">
+          <span className={`min-w-0 flex-1 truncate ${tiny} font-medium`}>{couple}</span>
+          <Pill tone={tone as "good"}>{state}</Pill>
+        </div>
+      ))}
+    </div>
+  ),
+
+  // Lume (na marca dele: noite quente, creme e a luz)
+  "l-said": (
+    <div className="grid w-full max-w-md gap-3 sm:grid-cols-2">
+      <div className={lumeBox}>
+        <p className="text-[10px] text-[#FBEFD6]/55">Você disse</p>
+        <p className="mt-1 font-display text-[17px] leading-tight text-[#FFC93C]">Enviar a proposta</p>
+        <p className="text-[10.5px] text-[#FBEFD6]/60">45 min, hoje</p>
+      </div>
+      <div className={lumeBox}>
+        <p className="text-[10px] text-[#FBEFD6]/55">Você está</p>
+        <p className="mt-1 font-display text-[17px] leading-tight text-[#F07A5F]">no feed</p>
+        <p className="text-[10.5px] text-[#FBEFD6]/60">há 20 min</p>
+      </div>
+    </div>
+  ),
+  "l-escape": (
+    <div className={`${lumeBox} w-full max-w-[17rem]`}>
+      <LumeHead />
+      <p className="mt-2 font-display text-[19px] leading-tight">1h40 hoje no projeto paralelo.</p>
+      <p className="mt-2 text-[10px] text-[#FBEFD6]/55">Esperando desde terça</p>
+      <p className="font-display text-[15px] text-[#FFC93C]">A proposta</p>
+      <span className="mt-3 block rounded-full bg-[#FFC93C] py-1.5 text-center text-[11px] font-semibold text-[#1E1203]">Ir agora</span>
+      <p className="mt-2 text-[10.5px] text-[#FBEFD6]/55">Mais 20 min, porque…</p>
+    </div>
+  ),
+  "l-transition": (
+    <div className={`${lumeBox} w-full max-w-[17rem]`}>
+      <LumeHead />
+      <p className="mt-2 font-display text-[17px] leading-tight">Você voltou depois de 40 min. O que vem agora?</p>
+      <div className="mt-3 flex flex-wrap gap-1.5">
+        {["A proposta, 45 min", "Ler 20 min", "Outra coisa"].map((option, i) => (
+          <span
+            key={option}
+            className={`rounded-full px-2.5 py-1 text-[10.5px] font-semibold ${
+              i === 0 ? "bg-[#FFC93C] text-[#1E1203]" : "border border-[#FBEFD6]/20 text-[#FBEFD6]/80"
+            }`}
+          >
+            {option}
+          </span>
+        ))}
+      </div>
+    </div>
+  ),
+  "l-skip": (
+    <div className={`${lumeBox} w-full max-w-[15rem]`}>
+      <LumeHead />
+      <p className="mt-2 font-display text-[18px] leading-tight">Por que hoje não?</p>
+      <span className="mt-3 block rounded-full bg-[#FFC93C] py-1.5 text-center text-[11px] font-semibold text-[#1E1203]">
+        Só 5 min agora
+      </span>
+      <p className="mt-2 text-center text-[10.5px] text-[#FBEFD6]/60">Amanhã às 7h</p>
+      <div className="mt-3 grid gap-1.5">
+        {["Cansado", "Sem tempo hoje", "Imprevisto", "Não é importante agora"].map((reason) => (
+          <span key={reason} className="rounded-lg border border-[#FBEFD6]/15 px-2.5 py-1.5 text-[10.5px] text-[#FBEFD6]/80">
+            {reason}
+          </span>
+        ))}
+      </div>
+      <p className="mt-3 text-[10px] text-[#FBEFD6]/45">Sem motivo, nada é gravado.</p>
+    </div>
+  ),
+  "l-fez": (
+    <div className={`${lumeBox} w-full max-w-[17rem]`}>
+      <LumeHead />
+      <p className="mt-2 font-display text-[18px] leading-tight">
+        Fez <span className="text-[#FFC93C]">a proposta</span>?
+      </p>
+      <p className="text-[10.5px] text-[#FBEFD6]/60">Vi 42 min nela desde as 16h10.</p>
+      <div className="mt-3 flex gap-1.5">
+        <span className="rounded-full bg-[#FFC93C] px-3 py-1 text-[10.5px] font-semibold text-[#1E1203]">Feito</span>
+        <span className="rounded-full border border-[#FBEFD6]/20 px-3 py-1 text-[10.5px] text-[#FBEFD6]/80">Em parte</span>
+        <span className="rounded-full border border-[#FBEFD6]/20 px-3 py-1 text-[10.5px] text-[#FBEFD6]/80">Não rolou</span>
+      </div>
+    </div>
+  ),
+  "l-learn": (
+    <div className={`${lumeBox} grid w-full max-w-[17rem] gap-2.5`}>
+      {[
+        ["Depois de reunião, o feed.", "5 vezes"],
+        ["Às 15h, a tarefa difícil some.", "4 de 5 dias"],
+        ["Uma frase sua te traz de volta.", "3 de 4"],
+      ].map(([belief, evidence]) => (
+        <div key={belief}>
+          <p className="font-display text-[14px] leading-tight">{belief}</p>
+          <p className="text-[10px] text-[#FBEFD6]/50">
+            {evidence} · <span className="underline decoration-[#FBEFD6]/30">Não é verdade</span>
+          </p>
+        </div>
+      ))}
+    </div>
+  ),
+  "l-move": (
+    <div className="grid w-full max-w-[17rem] gap-2">
+      {[
+        ["antes", "Às 15h costuma ser difícil.", "«É justo que muito custe o que muito vale.»"],
+        ["durante", "20 min no feed.", "«Comece pelo que dá para terminar hoje.»"],
+        ["depois", "Passou. O que ainda dá:", "10 min de alongamento agora."],
+      ].map(([moment, line, quote]) => (
+        <div key={moment} className={lumeBox}>
+          <p className="text-[10px] text-[#FFC93C]">{moment}</p>
+          <p className="mt-1 text-[10.5px] text-[#FBEFD6]/65">{line}</p>
+          <p className="mt-1.5 font-display text-[13px] leading-snug">{quote}</p>
+        </div>
+      ))}
+    </div>
+  ),
 };
+
+function LumeHead() {
+  return (
+    <p className="flex items-center gap-1.5 font-display text-[12px]">
+      <span className="size-2 rounded-full bg-[#FFC93C] shadow-[0_0_8px_2px_rgba(255,201,60,0.55)]" />
+      lume
+    </p>
+  );
+}

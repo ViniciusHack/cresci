@@ -17,7 +17,9 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as VersoesRouteImport } from './routes/versoes'
 import { Route as EnVersoesRouteImport } from './routes/en.versoes'
 import { Route as MediaFileRouteImport } from './routes/media.$file'
+import { Route as ProjetosAlentoRouteImport } from './routes/projetos.alento'
 import { Route as ProjetosFinanceHubRouteImport } from './routes/projetos.finance-hub'
+import { Route as ProjetosLumeRouteImport } from './routes/projetos.lume'
 import { Route as ProjetosRitmoRouteImport } from './routes/projetos.ritmo'
 import { Route as VBrutalRouteImport } from './routes/v.brutal'
 import { Route as VEditorialRouteImport } from './routes/v.editorial'
@@ -64,9 +66,19 @@ const MediaFileRoute = MediaFileRouteImport.update({
   path: '/media/$file',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProjetosAlentoRoute = ProjetosAlentoRouteImport.update({
+  id: '/projetos/alento',
+  path: '/projetos/alento',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProjetosFinanceHubRoute = ProjetosFinanceHubRouteImport.update({
   id: '/projetos/finance-hub',
   path: '/projetos/finance-hub',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjetosLumeRoute = ProjetosLumeRouteImport.update({
+  id: '/projetos/lume',
+  path: '/projetos/lume',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProjetosRitmoRoute = ProjetosRitmoRouteImport.update({
@@ -104,7 +116,9 @@ export interface FileRoutesByFullPath {
   '/versoes': typeof VersoesRoute
   '/en/versoes': typeof EnVersoesRoute
   '/media/$file': typeof MediaFileRoute
+  '/projetos/alento': typeof ProjetosAlentoRoute
   '/projetos/finance-hub': typeof ProjetosFinanceHubRoute
+  '/projetos/lume': typeof ProjetosLumeRoute
   '/projetos/ritmo': typeof ProjetosRitmoRoute
   '/v/brutal': typeof VBrutalRoute
   '/v/editorial': typeof VEditorialRoute
@@ -120,7 +134,9 @@ export interface FileRoutesByTo {
   '/versoes': typeof VersoesRoute
   '/en/versoes': typeof EnVersoesRoute
   '/media/$file': typeof MediaFileRoute
+  '/projetos/alento': typeof ProjetosAlentoRoute
   '/projetos/finance-hub': typeof ProjetosFinanceHubRoute
+  '/projetos/lume': typeof ProjetosLumeRoute
   '/projetos/ritmo': typeof ProjetosRitmoRoute
   '/v/brutal': typeof VBrutalRoute
   '/v/editorial': typeof VEditorialRoute
@@ -137,7 +153,9 @@ export interface FileRoutesById {
   '/versoes': typeof VersoesRoute
   '/en/versoes': typeof EnVersoesRoute
   '/media/$file': typeof MediaFileRoute
+  '/projetos/alento': typeof ProjetosAlentoRoute
   '/projetos/finance-hub': typeof ProjetosFinanceHubRoute
+  '/projetos/lume': typeof ProjetosLumeRoute
   '/projetos/ritmo': typeof ProjetosRitmoRoute
   '/v/brutal': typeof VBrutalRoute
   '/v/editorial': typeof VEditorialRoute
@@ -155,7 +173,9 @@ export interface FileRouteTypes {
     | '/versoes'
     | '/en/versoes'
     | '/media/$file'
+    | '/projetos/alento'
     | '/projetos/finance-hub'
+    | '/projetos/lume'
     | '/projetos/ritmo'
     | '/v/brutal'
     | '/v/editorial'
@@ -171,7 +191,9 @@ export interface FileRouteTypes {
     | '/versoes'
     | '/en/versoes'
     | '/media/$file'
+    | '/projetos/alento'
     | '/projetos/finance-hub'
+    | '/projetos/lume'
     | '/projetos/ritmo'
     | '/v/brutal'
     | '/v/editorial'
@@ -187,7 +209,9 @@ export interface FileRouteTypes {
     | '/versoes'
     | '/en/versoes'
     | '/media/$file'
+    | '/projetos/alento'
     | '/projetos/finance-hub'
+    | '/projetos/lume'
     | '/projetos/ritmo'
     | '/v/brutal'
     | '/v/editorial'
@@ -203,7 +227,9 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   VersoesRoute: typeof VersoesRoute
   MediaFileRoute: typeof MediaFileRoute
+  ProjetosAlentoRoute: typeof ProjetosAlentoRoute
   ProjetosFinanceHubRoute: typeof ProjetosFinanceHubRoute
+  ProjetosLumeRoute: typeof ProjetosLumeRoute
   ProjetosRitmoRoute: typeof ProjetosRitmoRoute
   VBrutalRoute: typeof VBrutalRoute
   VEditorialRoute: typeof VEditorialRoute
@@ -269,11 +295,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MediaFileRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/projetos/alento': {
+      id: '/projetos/alento'
+      path: '/projetos/alento'
+      fullPath: '/projetos/alento'
+      preLoaderRoute: typeof ProjetosAlentoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/projetos/finance-hub': {
       id: '/projetos/finance-hub'
       path: '/projetos/finance-hub'
       fullPath: '/projetos/finance-hub'
       preLoaderRoute: typeof ProjetosFinanceHubRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projetos/lume': {
+      id: '/projetos/lume'
+      path: '/projetos/lume'
+      fullPath: '/projetos/lume'
+      preLoaderRoute: typeof ProjetosLumeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/projetos/ritmo': {
@@ -332,7 +372,9 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   VersoesRoute: VersoesRoute,
   MediaFileRoute: MediaFileRoute,
+  ProjetosAlentoRoute: ProjetosAlentoRoute,
   ProjetosFinanceHubRoute: ProjetosFinanceHubRoute,
+  ProjetosLumeRoute: ProjetosLumeRoute,
   ProjetosRitmoRoute: ProjetosRitmoRoute,
   VBrutalRoute: VBrutalRoute,
   VEditorialRoute: VEditorialRoute,

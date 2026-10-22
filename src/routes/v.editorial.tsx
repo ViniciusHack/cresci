@@ -15,7 +15,7 @@ export const Route = createFileRoute("/v/editorial")({
   head: ({ match }) => {
     const { locale, copy } = copyForLocation(match.pathname, match.search);
     return pageHead({
-      title: `${copy.versions.editorial.name} — Vinícius Hack`,
+      title: `${copy.versions.editorial.name} · Vinícius Hack`,
       description: copy.versions.editorial.tag,
       path: "/v/editorial",
       locale,

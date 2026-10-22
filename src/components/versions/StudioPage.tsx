@@ -21,9 +21,10 @@ const THEME_KEY = "studio-theme";
 const PROJECT_CYCLE_MS = 5000;
 
 const stacks: Record<string, string[]> = {
-  alento: ["React", "TypeScript", "Supabase"],
+  alento: ["React", "Supabase", "Cloudflare Workers"],
   mytribe: ["Expo", "Supabase", "Stripe"],
   ritmo: ["Swift", "SwiftUI", "SQLite", "local-first"],
+  lume: ["Swift", "FamilyControls", "AI agent"],
   financehub: ["Next.js", "Postgres", "Open Finance", "Claude"],
   bot: ["NestJS", "Rust"],
   simulation: ["Firebase", "BullMQ", "Postgres"],
@@ -39,6 +40,7 @@ const covers: Record<
   alento: { kind: "photo", src: "/comercial/alento.jpg", tone: "" },
   mytribe: { kind: "photo", src: "/comercial/mytribe.jpg", tone: "" },
   ritmo: { kind: "video", src: "/media/ritmo.mp4", poster: "/comercial/ritmo.jpg", tone: "", cycleMs: 16000 },
+  lume: { kind: "photo", src: "/comercial/lume.jpg", tone: "" },
   financehub: { kind: "video", src: "/media/finance-hub.mp4", poster: "/comercial/finance-hub.jpg", tone: "", cycleMs: 15500 },
   bot: { kind: "photo", src: "/comercial/bot.jpg", tone: "" },
   simulation: { kind: "photo", src: "/comercial/backtest.jpg", tone: "" },

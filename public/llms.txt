@@ -1,6 +1,6 @@
 # Vinícius Wilbert Hack
 
-> Engenheiro de software e desenvolvedor em Balneário Camboriú, Santa Catarina. From idea to launch — software people actually use.
+> Software engineer in Balneário Camboriú, Santa Catarina, Brazil. Builds his own apps and apps for clients, from idea to launch.
 
 - Site: https://viniciushack.com
 - English: https://viniciushack.com/en
@@ -13,11 +13,14 @@ Vinícius Wilbert Hack (Vinícius Hack) is a software engineer, developer and pr
 
 ## Work
 
-- Automatize — AI agent so a non-technical client can create, pause and read paid-traffic campaigns in the app and WhatsApp
-- Layback Trading — white-label trading platform (100k+ users/day), NestJS APIs and Rust bot engine
-- MyTribe — iOS/Android social app
-- Alento Foto & Filme — wedding photography site, freelance from scratch to paying clients
-- Goalfy — Stripe payments and react-flow diagrams
+- Automatize: AI agent so a non-technical client can create, pause and read paid-traffic campaigns in the app and WhatsApp
+- Layback Trading: white-label trading platform (100k+ users/day), NestJS APIs and Rust bot engine
+- MyTribe: iOS/Android social app
+- Alento Foto & Filme: wedding photography site plus a gallery delivery system (admin panel, private client galleries, streamed downloads), freelance from scratch to paying clients · https://viniciushack.com/projetos/alento
+- Ritmo: native Mac + iPhone app that tracks time on its own and confronts what you do with your priorities · https://viniciushack.com/projetos/ritmo
+- Lume: Mac + iPhone agent that compares what you said you'd do with what you're doing and intervenes in time · https://viniciushack.com/projetos/lume
+- Finance Hub: finance aggregator with Open Finance and an AI-written monthly reading · https://viniciushack.com/projetos/finance-hub
+- Goalfy: Stripe payments and react-flow diagrams
 
 ## Location
 

@@ -18,7 +18,7 @@ const LINKS: LinkItem[] = [
 export const Route = createFileRoute("/links")({
   head: () =>
     pageHead({
-      title: "Links — Vinícius Hack",
+      title: "Links · Vinícius Hack",
       description: "Instagram, LinkedIn e site de Vinícius Hack.",
       path: "/links",
       locale: "pt-BR",
